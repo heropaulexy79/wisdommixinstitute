@@ -73,22 +73,22 @@ export default function Home() {
             {
               title: "Leadership Development",
               desc: "Building capacity to lead oneself and others with excellence and character.",
-              icon: <Compass className="w-8 h-8 text-primary-600" />,
+              icon: <Compass className="w-8 h-8" />,
             },
             {
               title: "Discipleship Training",
               desc: "Deepening spiritual roots and understanding sound doctrinal foundations.",
-              icon: <BookOpen className="w-8 h-8 text-primary-600" />,
+              icon: <BookOpen className="w-8 h-8" />,
             },
             {
               title: "Mind Transformation",
               desc: "Breaking mental barriers and cultivating a growth-oriented, winning mindset.",
-              icon: <Brain className="w-8 h-8 text-primary-600" />,
+              icon: <Brain className="w-8 h-8" />,
             },
             {
               title: "Mentorship Systems",
               desc: "Providing guidance, accountability, and accelerated growth through relationships.",
-              icon: <Users className="w-8 h-8 text-primary-600" />,
+              icon: <Users className="w-8 h-8" />,
             },
           ].map((pillar, idx) => (
             <div 
