@@ -14,9 +14,9 @@ export default function Footer() {
               <Image 
                 src="/logo.png" 
                 alt="Wisdommix Institute Logo" 
-                width={90} 
-                height={30} 
-                className="h-7 w-auto object-contain brightness-0 invert"
+                width={110} 
+                height={35} 
+                className="h-9 w-auto object-contain brightness-0 invert"
               />
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed max-w-sm">

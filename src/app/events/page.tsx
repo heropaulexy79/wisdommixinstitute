@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { collection, query, orderBy, getDocs } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import EventCard, { EventData } from "@/components/EventCard";
@@ -100,9 +101,12 @@ export default function EventsPage() {
                     Location: {featuredEvent.location}
                   </p>
                   <div>
-                    <button className="px-8 py-4 rounded-full bg-accent-500 text-white font-bold text-lg hover:bg-accent-400 hover:scale-105 transition-all shadow-lg shadow-accent-500/30">
+                    <Link 
+                      href="/contact"
+                      className="inline-block px-8 py-4 rounded-full bg-accent-500 text-white font-bold text-lg hover:bg-accent-400 hover:scale-105 transition-all shadow-lg shadow-accent-500/30"
+                    >
                       Register for this Event
-                    </button>
+                    </Link>
                   </div>
                 </div>
                 
