@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import SectionWrapper from "@/components/SectionWrapper";
 import CTASection from "@/components/CTASection";
 import { Target, Eye, TrendingUp, Shield, Compass, Zap } from "lucide-react";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "About Us | Wisdommix Institute",
@@ -65,11 +66,15 @@ export default function AboutPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           <div className="lg:col-span-5 relative">
             <div className="aspect-[3/4] rounded-3xl overflow-hidden bg-gray-200 relative shadow-2xl shadow-primary-900/10">
-              {/* Image Placeholder wrapper */}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary-950 via-primary-900/40 to-transparent z-10" />
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-primary-50 flex items-center justify-center">
-                <span className="text-primary-900/30 font-bold text-2xl uppercase tracking-widest">Image Placeholder</span>
-              </div>
+              {/* Actual Image */}
+              <Image 
+                src="/mentor.jpeg" 
+                alt="Founder & Mentor Joseph Adeniran" 
+                fill
+                className="object-cover object-center transition-transform hover:scale-110 duration-700"
+              />
+              {/* Overlay Gradient for readability of name text */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary-950/80 via-transparent to-transparent z-10" />
               
               {/* Founder Name Overlay */}
               <div className="absolute bottom-0 left-0 w-full p-8 z-20">
