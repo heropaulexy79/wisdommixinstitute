@@ -46,7 +46,7 @@ export default function RecentEvents() {
     <SectionWrapper id="upcoming-events" className="bg-white border-t border-gray-100">
       <div className="flex flex-col md:flex-row justify-between items-end mb-12">
         <div className="max-w-2xl">
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
             Upcoming Events
           </h2>
           <p className="text-gray-600 text-lg">

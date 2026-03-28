@@ -31,7 +31,7 @@ export default function CTASection({
 
       <SectionWrapper className="relative z-10 text-center !py-20 md:!py-32">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+          <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-6 tracking-tight">
             {title}
           </h2>
           <p className="text-lg md:text-xl text-primary-100/80 mb-10 leading-relaxed font-light">
