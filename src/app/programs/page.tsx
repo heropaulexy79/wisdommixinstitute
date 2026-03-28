@@ -89,7 +89,8 @@ export default function ProgramsPage() {
           <SectionWrapper 
             key={program.id} 
             id={program.id}
-            className={`!py-6 md:!py-10 ${index !== programs.length - 1 ? "mb-6 lg:mb-12" : ""}`}
+            className={`${index !== programs.length - 1 ? "mb-2 md:mb-4" : ""}`}
+            innerClassName="py-2 md:py-4"
             delay={0.1}
           >
             <div className={`rounded-3xl border ${program.borderColor} bg-gradient-to-br ${program.bgPrimary} p-5 md:p-8 lg:p-10 shadow-sm overflow-hidden relative`}>
@@ -112,7 +113,7 @@ export default function ProgramsPage() {
                   </p>
                   <a 
                     href="/contact" 
-                    className="inline-flex items-center px-4 py-2 md:px-6 md:py-3 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-600/90 transition-colors shadow-sm text-sm md:text-base"
+                    className="inline-flex items-center px-3 py-1.5 md:px-5 md:py-2.5 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-600/90 transition-colors shadow-sm text-[10px] md:text-sm"
                   >
                     Enroll in this Program
                   </a>

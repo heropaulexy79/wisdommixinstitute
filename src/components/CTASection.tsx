@@ -40,14 +40,14 @@ export default function CTASection({
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href={primaryButtonHref}
-              className="w-full sm:w-auto px-5 py-2.5 md:px-8 md:py-4 rounded-full bg-accent-500 text-white font-bold text-base md:text-lg hover:bg-accent-400 hover:scale-105 transition-all shadow-lg shadow-accent-500/30 flex items-center justify-center group"
+              className="w-full sm:w-auto px-3.5 py-1.5 md:px-8 md:py-4 rounded-full bg-accent-500 text-white font-bold text-xs md:text-lg hover:bg-accent-400 hover:scale-105 transition-all shadow-lg shadow-accent-500/30 flex items-center justify-center group"
             >
               {primaryButtonText}
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               href={secondaryButtonHref}
-              className="w-full sm:w-auto px-5 py-2.5 md:px-8 md:py-4 rounded-full bg-white/10 text-white font-bold text-base md:text-lg border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center"
+              className="w-full sm:w-auto px-3.5 py-1.5 md:px-8 md:py-4 rounded-full bg-white/10 text-white font-bold text-xs md:text-lg border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center"
             >
               {secondaryButtonText}
             </Link>
