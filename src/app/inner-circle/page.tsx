@@ -49,7 +49,7 @@ export default function InnerCirclePage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-accent-500 text-white font-bold text-lg hover:bg-accent-400 hover:scale-105 transition-all shadow-lg shadow-accent-500/30"
+            className="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-4 rounded-full bg-accent-500 text-white font-bold text-base md:text-lg hover:bg-accent-400 hover:scale-105 transition-all shadow-lg shadow-accent-500/30"
           >
             Apply to Join Today
             <ArrowRight className="ml-2 w-5 h-5" />

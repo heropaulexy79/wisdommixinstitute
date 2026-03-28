@@ -111,7 +111,7 @@ export default function HeroSlider() {
               <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl text-balance">
                 {slides[currentSlide].description}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
                 <Link
                   href={slides[currentSlide].cta1Link}
                   className="px-5 py-2.5 md:px-8 md:py-4 rounded-full bg-primary-500 text-white font-bold text-base md:text-lg hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/30 transition-all transform hover:-translate-y-1 text-center"
