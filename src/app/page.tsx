@@ -123,7 +123,7 @@ export default function Home() {
             </p>
             <Link 
               href="/programs" 
-              className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-white text-primary-900 font-bold text-lg hover:bg-primary-50 transition-colors group"
+              className="w-64 sm:w-auto inline-flex items-center justify-center px-7 py-3 md:px-8 md:py-4 rounded-full bg-white text-primary-900 font-bold text-base md:text-lg hover:bg-primary-50 transition-colors group"
             >
               Explore All Programs
               <ArrowRight className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
