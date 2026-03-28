@@ -82,7 +82,7 @@ export default function RecentEvents() {
       <div className="mt-10 md:hidden flex justify-center">
         <Link 
           href="/events" 
-          className="inline-flex items-center justify-center px-6 py-3 rounded-full bg-white border border-gray-200 text-primary-700 font-semibold hover:bg-gray-50 transition-colors w-full"
+          className="inline-flex items-center justify-center px-5 py-2.5 md:px-6 md:py-3 rounded-full bg-white border border-gray-200 text-primary-700 font-semibold hover:bg-gray-50 transition-colors w-full"
         >
           View All Events
           <ArrowRight className="ml-2 w-4 h-4" />

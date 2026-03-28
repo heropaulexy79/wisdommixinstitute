@@ -114,13 +114,13 @@ export default function HeroSlider() {
               <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                 <Link
                   href={slides[currentSlide].cta1Link}
-                  className="px-8 py-4 rounded-full bg-primary-500 text-white font-bold text-lg hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/30 transition-all transform hover:-translate-y-1 text-center"
+                  className="px-6 py-3.5 md:px-8 md:py-4 rounded-full bg-primary-500 text-white font-bold text-lg hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/30 transition-all transform hover:-translate-y-1 text-center"
                 >
                   {slides[currentSlide].cta1}
                 </Link>
                 <Link
                   href={slides[currentSlide].cta2Link}
-                  className="px-8 py-4 rounded-full bg-white/10 backdrop-blur-md text-white font-bold text-lg border border-white/30 hover:bg-white/20 transition-all flex items-center justify-center text-center group"
+                  className="px-6 py-3.5 md:px-8 md:py-4 rounded-full bg-white/10 backdrop-blur-md text-white font-bold text-lg border border-white/30 hover:bg-white/20 transition-all flex items-center justify-center text-center group"
                 >
                   {slides[currentSlide].cta2}
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />

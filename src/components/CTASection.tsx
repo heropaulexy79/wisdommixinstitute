@@ -29,7 +29,7 @@ export default function CTASection({
         <div className="absolute top-[60%] -right-[10%] w-[40%] h-[60%] rounded-full bg-accent-600/20 blur-3xl" />
       </div>
 
-      <SectionWrapper className="relative z-10 text-center !py-20 md:!py-32">
+      <SectionWrapper className="relative z-10 text-center !py-14 md:!py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
             {title}
@@ -40,14 +40,14 @@ export default function CTASection({
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href={primaryButtonHref}
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-accent-500 text-white font-bold text-lg hover:bg-accent-400 hover:scale-105 transition-all shadow-lg shadow-accent-500/30 flex items-center justify-center group"
+              className="w-full sm:w-auto px-6 py-3.5 md:px-8 md:py-4 rounded-full bg-accent-500 text-white font-bold text-lg hover:bg-accent-400 hover:scale-105 transition-all shadow-lg shadow-accent-500/30 flex items-center justify-center group"
             >
               {primaryButtonText}
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               href={secondaryButtonHref}
-              className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 text-white font-bold text-lg border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center"
+              className="w-full sm:w-auto px-6 py-3.5 md:px-8 md:py-4 rounded-full bg-white/10 text-white font-bold text-lg border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center"
             >
               {secondaryButtonText}
             </Link>
