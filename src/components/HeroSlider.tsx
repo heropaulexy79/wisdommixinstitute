@@ -108,7 +108,7 @@ export default function HeroSlider() {
                   {slides[currentSlide].highlight}
                 </span>
               </h1>
-              <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl text-balance">
+              <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl text-justify">
                 {slides[currentSlide].description}
               </p>
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">

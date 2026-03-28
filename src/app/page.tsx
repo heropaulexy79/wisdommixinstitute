@@ -32,7 +32,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               A Proven System for Total Transformation
             </h2>
-            <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+            <p className="text-lg text-gray-600 mb-6 leading-relaxed text-justify">
               At Wisdommix Institute, we believe true leadership begins from within. Our unique transformational system is designed to break limitations, renew mindsets, and equip individuals with the spiritual and mental fortitude needed to lead effectively.
             </p>
             <ul className="space-y-4 mb-8">
@@ -64,7 +64,7 @@ export default function Home() {
       <SectionWrapper id="pillars" className="bg-primary-950">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">Our Core Pillars</h2>
-          <p className="text-lg text-primary-100">
+          <p className="text-lg text-primary-100 text-justify md:text-center">
             The foundation of everything we do is built upon these four essential pillars, designed to bring out the absolute best in you.
           </p>
         </div>
@@ -103,7 +103,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">{pillar.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{pillar.desc}</p>
+              <p className="text-gray-600 leading-relaxed text-justify">{pillar.desc}</p>
             </div>
           ))}
         </div>
@@ -118,7 +118,7 @@ export default function Home() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500 rounded-full blur-[80px] opacity-20 -mr-20 -mt-20"></div>
           <div className="relative p-10 md:p-16 lg:p-20 text-center max-w-4xl mx-auto flex flex-col items-center">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Comprehensive Programs</h2>
-            <p className="text-lg text-primary-100 mb-10 leading-relaxed max-w-2xl text-balance">
+            <p className="text-lg text-primary-100 mb-10 leading-relaxed max-w-2xl text-justify md:text-center">
               Whether you are looking to refine your leadership skills, understand your spiritual identity, or receive personalized guidance, our structured programs are tailored for you.
             </p>
             <Link 
@@ -142,7 +142,7 @@ export default function Home() {
               <Users className="w-7 h-7 text-accent-600" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">The Inner Circle</h3>
-            <p className="text-gray-600 mb-8 leading-relaxed">
+            <p className="text-gray-600 mb-8 leading-relaxed text-justify">
               Gain access to a private, exclusive community of high-achievers. Network, learn, and grow alongside like-minded individuals committed to excellence.
             </p>
             <Link 
@@ -160,7 +160,7 @@ export default function Home() {
               <Compass className="w-7 h-7 text-primary-600" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">1-on-1 Mentorship</h3>
-            <p className="text-gray-600 mb-8 leading-relaxed">
+            <p className="text-gray-600 mb-8 leading-relaxed text-justify">
               Accelerate your growth journey through personalized guidance and accountability from seasoned leaders who have walked the path.
             </p>
             <Link 
