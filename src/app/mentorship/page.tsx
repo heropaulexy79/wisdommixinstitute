@@ -26,7 +26,7 @@ export default function MentorshipPage() {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center px-8 py-3 md:px-8 md:py-4 rounded-full bg-white text-primary-900 font-bold text-base md:text-lg hover:bg-gray-100 hover:scale-105 transition-all shadow-xl"
+            className="w-64 sm:w-auto inline-flex items-center justify-center px-8 py-3 md:px-8 md:py-4 rounded-full bg-white text-primary-900 font-bold text-base md:text-lg hover:bg-gray-100 hover:scale-105 transition-all shadow-xl"
           >
             Apply for Mentorship
             <ArrowRight className="ml-2 w-5 h-5" />

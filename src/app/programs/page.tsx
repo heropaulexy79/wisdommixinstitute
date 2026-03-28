@@ -112,7 +112,7 @@ export default function ProgramsPage() {
                   </p>
                   <a 
                     href="/contact" 
-                    className="inline-flex items-center px-6 py-2 md:px-6 md:py-3 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-600/90 transition-colors shadow-sm text-sm md:text-base"
+                    className="w-64 md:w-auto inline-flex items-center justify-center px-6 py-2 md:px-6 md:py-3 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-600/90 transition-colors shadow-sm text-sm md:text-base"
                   >
                     Enroll in this Program
                   </a>
