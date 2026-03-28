@@ -102,7 +102,7 @@ export default function HeroSlider() {
                 <span className="flex h-2 w-2 rounded-full bg-primary-400 mr-2 animate-pulse" />
                 {slides[currentSlide].tagline}
               </div>
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 text-balance leading-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-6 text-balance leading-tight">
                 {slides[currentSlide].title}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-emerald-300">
                   {slides[currentSlide].highlight}
