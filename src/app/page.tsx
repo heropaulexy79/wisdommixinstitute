@@ -28,7 +28,7 @@ export default function Home() {
           </div>
           
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
               A Proven System for Total Transformation
             </h2>
             <p className="text-lg text-gray-600 mb-6 leading-relaxed">
@@ -62,7 +62,7 @@ export default function Home() {
       {/* 3. CORE PILLARS */}
       <SectionWrapper id="pillars" className="bg-primary-950">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6">Our Core Pillars</h2>
+          <h2 className="text-2xl md:text-4xl font-extrabold text-white mb-6">Our Core Pillars</h2>
           <p className="text-lg text-primary-100">
             The foundation of everything we do is built upon these four essential pillars, designed to bring out the absolute best in you.
           </p>
@@ -116,7 +116,7 @@ export default function Home() {
         <div className="bg-primary-900 rounded-3xl overflow-hidden relative">
           <div className="absolute top-0 right-0 w-64 h-64 bg-accent-500 rounded-full blur-[80px] opacity-20 -mr-20 -mt-20"></div>
           <div className="relative p-10 md:p-16 lg:p-20 text-center max-w-4xl mx-auto flex flex-col items-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Comprehensive Programs</h2>
+            <h2 className="text-2xl md:text-4xl font-bold text-white mb-6">Comprehensive Programs</h2>
             <p className="text-lg text-primary-100 mb-10 leading-relaxed max-w-2xl text-balance">
               Whether you are looking to refine your leadership skills, understand your spiritual identity, or receive personalized guidance, our structured programs are tailored for you.
             </p>
