@@ -15,13 +15,14 @@ export default function Home() {
       <SectionWrapper id="what-we-do" className="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <div className="relative">
-            <div className="aspect-square md:aspect-[4/3] rounded-3xl overflow-hidden bg-gray-200 relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary-900 to-primary-700/80 mix-blend-multiply" />
-              {/* Using a solid color with gradient as placeholder since we don't have an image. In real app, use next/image here */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-100 to-primary-50 flex flex-col items-center justify-center p-8 text-center text-primary-900">
-                <Compass className="w-20 h-20 mb-6 text-primary-600 opacity-80" />
-                <h3 className="text-2xl font-bold">The Transformation System</h3>
-              </div>
+            <div className="aspect-video rounded-3xl overflow-hidden bg-black shadow-2xl relative border border-gray-100">
+              <iframe
+                src="https://player.vimeo.com/video/1124785898?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+                className="absolute inset-0 w-full h-full"
+                frameBorder="0"
+                allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+                title="Wisdommix Institute Transformation System"
+              ></iframe>
             </div>
             {/* Design Element */}
             <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-accent-400 rounded-full blur-2xl opacity-40 z-[-1]" />
