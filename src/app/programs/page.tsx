@@ -71,7 +71,7 @@ export default function ProgramsPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-primary-950 py-12 md:py-20 relative overflow-hidden">
+      <section className="bg-primary-950 py-10 md:py-16 relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-primary-900 rounded-l-full blur-3xl opacity-50" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
@@ -84,15 +84,15 @@ export default function ProgramsPage() {
       </section>
 
       {/* Programs List */}
-      <div className="py-10 md:py-16 bg-white">
+      <div className="py-6 md:py-12 bg-white">
         {programs.map((program, index) => (
           <SectionWrapper 
             key={program.id} 
             id={program.id}
-            className={`!py-10 md:!py-14 ${index !== programs.length - 1 ? "mb-8 lg:mb-16" : ""}`}
+            className={`!py-6 md:!py-10 ${index !== programs.length - 1 ? "mb-6 lg:mb-12" : ""}`}
             delay={0.1}
           >
-            <div className={`rounded-3xl border ${program.borderColor} bg-gradient-to-br ${program.bgPrimary} p-6 md:p-10 lg:p-12 shadow-sm overflow-hidden relative`}>
+            <div className={`rounded-3xl border ${program.borderColor} bg-gradient-to-br ${program.bgPrimary} p-5 md:p-8 lg:p-10 shadow-sm overflow-hidden relative`}>
               
               {/* Optional background decorative element */}
               <div className="absolute -right-20 -bottom-20 opacity-5 pointer-events-none transform scale-150">
@@ -112,7 +112,7 @@ export default function ProgramsPage() {
                   </p>
                   <a 
                     href="/contact" 
-                    className="inline-flex items-center px-5 py-2.5 md:px-6 md:py-3 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-600/90 transition-colors shadow-sm"
+                    className="inline-flex items-center px-4 py-2 md:px-6 md:py-3 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-600/90 transition-colors shadow-sm text-sm md:text-base"
                   >
                     Enroll in this Program
                   </a>
