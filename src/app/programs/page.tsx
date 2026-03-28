@@ -108,7 +108,7 @@ export default function ProgramsPage() {
                       <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
                         {program.title}
                       </h2>
-                      <p className="text-lg text-gray-600 mb-8 leading-relaxed text-justify">
+                      <p className="text-lg text-gray-600 mb-8 leading-relaxed text-left md:text-justify">
                         {program.description}
                       </p>
                       <a 

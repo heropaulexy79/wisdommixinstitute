@@ -44,7 +44,7 @@ export default function InnerCirclePage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6">
             The <span className="text-accent-400">Inner Circle</span>
           </h1>
-          <p className="text-xl text-primary-100 max-w-2xl mx-auto mb-10 text-justify md:text-center">
+          <p className="text-xl text-primary-100 max-w-2xl mx-auto mb-10 text-left md:text-center">
             A private, deeply committed community of leaders actively shaping the future. Elevate your associations, elevate your life.
           </p>
           <Link
@@ -60,7 +60,7 @@ export default function InnerCirclePage() {
       <SectionWrapper className="bg-white py-20">
         <div className="mb-16 text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Why the Inner Circle?</h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto text-justify md:text-center">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto text-left md:text-center">
             You are the average of the five people you spend the most time with. The Inner Circle provides an environment where your ambition is nurtured, your faith is strengthened, and your leadership capacity is exponentially increased through high-level associations.
           </p>
         </div>

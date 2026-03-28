@@ -21,7 +21,7 @@ export default function MentorshipPage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6">
             1-on-1 <span className="text-accent-400">Mentorship</span>
           </h1>
-          <p className="text-xl text-primary-100 max-w-3xl mx-auto mb-10 leading-relaxed text-justify md:text-center">
+          <p className="text-xl text-primary-100 max-w-3xl mx-auto mb-10 leading-relaxed text-left md:text-center">
             Personalized guidance, rigorous accountability, and customized strategies to help you break through invisible ceilings and maximize your potential.
           </p>
           <Link
@@ -38,7 +38,7 @@ export default function MentorshipPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Who is this for?</h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed text-justify">
+            <p className="text-lg text-gray-600 mb-8 leading-relaxed text-left md:text-justify">
               Our mentorship program is not for everyone. It is meticulously designed for high-capacity individuals who are hungry for growth, willing to be challenged, and ready to execute.
             </p>
             <ul className="space-y-4">

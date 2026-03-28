@@ -49,7 +49,7 @@ export default function EventCard({ event }: EventCardProps) {
         
         <Link 
           href={`/events/${event.id}`} 
-          className="inline-flex items-center justify-center w-full py-3 px-4 rounded-xl bg-primary-50 text-primary-700 font-semibold hover:bg-primary-600 hover:text-white transition-colors group/btn"
+          className="w-64 md:w-full mx-auto inline-flex items-center justify-center py-3 px-4 rounded-xl bg-primary-50 text-primary-700 font-semibold hover:bg-primary-600 hover:text-white transition-colors group/btn"
         >
           Register Now
           <ArrowRight className="ml-2 w-4 h-4 transform group-hover/btn:translate-x-1 transition-transform" />

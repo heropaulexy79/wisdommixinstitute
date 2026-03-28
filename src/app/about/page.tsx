@@ -22,7 +22,7 @@ export default function AboutPage() {
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-8 tracking-tight max-w-4xl mx-auto">
             About <span className="text-accent-400">Wisdommix Institute</span>
           </h1>
-          <p className="text-lg md:text-xl text-primary-100 max-w-3xl mx-auto leading-relaxed text-justify">
+          <p className="text-lg md:text-xl text-primary-100 max-w-3xl mx-auto leading-relaxed text-left md:text-justify">
             Wisdommix Institute is a premier transformational platform dedicated to shaping the minds and capacities of individuals who aspire to lead with purpose, deep spiritual understanding, and unwavering excellence. We believe that true leadership requires a profound inner transformation before it can result in lasting outward impact.
           </p>
         </div>
@@ -39,7 +39,7 @@ export default function AboutPage() {
                 <Target className="w-8 h-8 text-primary-600" />
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Mission</h2>
-              <p className="text-lg text-gray-600 leading-relaxed text-justify">
+              <p className="text-lg text-gray-600 leading-relaxed text-left md:text-justify">
                 To equip emerging and established leaders with robust spiritual, mental, and professional tools, enabling them to navigate complex challenges, disciple others effectively, and leave an indelible mark on their spheres of influence.
               </p>
             </div>
@@ -53,7 +53,7 @@ export default function AboutPage() {
                 <Eye className="w-8 h-8 text-accent-500" />
               </div>
               <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Vision</h2>
-              <p className="text-lg text-gray-600 leading-relaxed text-justify">
+              <p className="text-lg text-gray-600 leading-relaxed text-left md:text-justify">
                 To build a global network of enlightened, deeply rooted, and impeccably skilled leaders who operate with integrity, drive sustainable growth, and foster transformational cultures wherever they are planted.
               </p>
             </div>
@@ -90,7 +90,7 @@ export default function AboutPage() {
           
           <div className="lg:col-span-7">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Meet The Visionary</h2>
-            <div className="prose prose-lg text-gray-600 leading-loose max-w-none text-justify">
+            <div className="prose prose-lg text-gray-600 leading-loose max-w-none text-left md:text-justify">
               <p className="mb-6">
                 Joseph Adeniran is a recognized mentor, leadership strategist, and deeply passionate teacher. With over a decade of experience guiding individuals through significant personal and professional transitions, he founded Wisdommix Institute to address a critical vacuum in holistic leader development.
               </p>

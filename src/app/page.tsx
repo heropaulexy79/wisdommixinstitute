@@ -32,7 +32,7 @@ export default function Home() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               A Proven System for Total Transformation
             </h2>
-            <p className="text-lg text-gray-600 mb-6 leading-relaxed text-justify">
+            <p className="text-lg text-gray-600 mb-6 leading-relaxed text-left md:text-justify">
               At Wisdommix Institute, we believe true leadership begins from within. Our unique transformational system is designed to break limitations, renew mindsets, and equip individuals with the spiritual and mental fortitude needed to lead effectively.
             </p>
             <ul className="space-y-4 mb-8">
@@ -103,7 +103,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-3">{pillar.title}</h3>
-              <p className="text-gray-600 leading-relaxed text-justify">{pillar.desc}</p>
+              <p className="text-gray-600 leading-relaxed text-left md:text-justify">{pillar.desc}</p>
             </div>
           ))}
         </div>
@@ -142,7 +142,7 @@ export default function Home() {
               <Users className="w-7 h-7 text-accent-600" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">The Inner Circle</h3>
-            <p className="text-gray-600 mb-8 leading-relaxed text-justify">
+            <p className="text-gray-600 mb-8 leading-relaxed text-left md:text-justify">
               Gain access to a private, exclusive community of high-achievers. Network, learn, and grow alongside like-minded individuals committed to excellence.
             </p>
             <Link 
@@ -160,7 +160,7 @@ export default function Home() {
               <Compass className="w-7 h-7 text-primary-600" />
             </div>
             <h3 className="text-2xl font-bold text-gray-900 mb-4">1-on-1 Mentorship</h3>
-            <p className="text-gray-600 mb-8 leading-relaxed text-justify">
+            <p className="text-gray-600 mb-8 leading-relaxed text-left md:text-justify">
               Accelerate your growth journey through personalized guidance and accountability from seasoned leaders who have walked the path.
             </p>
             <Link 
