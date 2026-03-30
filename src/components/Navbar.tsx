@@ -81,7 +81,7 @@ export default function Navbar() {
               href="/contact"
               className="ml-6 px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-[0.3em] transition-all shadow-xl active:scale-95 bg-primary-900 text-white hover:bg-black"
             >
-              Consultation
+              Get In Touch
             </Link>
           </div>
 
@@ -135,7 +135,7 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="block w-full py-4 rounded-2xl bg-primary-900 text-white text-center text-xs font-black uppercase tracking-[0.3em] shadow-xl"
                 >
-                  Get Started
+                  Get In Touch
                 </Link>
               </div>
             </div>

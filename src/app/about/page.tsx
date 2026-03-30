@@ -41,7 +41,7 @@ export default function AboutPage() {
                 <Target className="w-8 h-8 text-white" />
               </div>
               <h2 className="text-3xl font-medium text-gray-900 mb-6 font-serif italic">Our Mission</h2>
-              <p className="text-lg text-gray-500 leading-relaxed font-light">
+              <p className="text-lg text-gray-700 leading-relaxed font-light">
                 To equip emerging and established leaders with robust spiritual, mental, and professional tools, enabling them to navigate complex challenges, disciple others effectively, and leave an indelible mark on their spheres of influence.
               </p>
             </div>
@@ -55,7 +55,7 @@ export default function AboutPage() {
                 <Eye className="w-8 h-8 text-white" />
               </div>
               <h2 className="text-3xl font-medium text-gray-900 mb-6 font-serif italic">Our Vision</h2>
-              <p className="text-lg text-gray-500 leading-relaxed font-light">
+              <p className="text-lg text-gray-700 leading-relaxed font-light">
                 To build a global network of enlightened, deeply rooted, and impeccably skilled leaders who operate with integrity, drive sustainable growth, and foster transformational cultures wherever they are planted.
               </p>
             </div>
@@ -73,7 +73,7 @@ export default function AboutPage() {
                 src="/mentor.jpeg" 
                 alt="Founder & Mentor Joseph Adeniran" 
                 fill
-                className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000 scale-105 group-hover:scale-100"
+                className="object-cover object-center transition-all duration-1000 scale-105 group-hover:scale-100"
               />
               {/* Overlay Gradient for readability of name text */}
               <div className="absolute inset-0 bg-gradient-to-t from-primary-950/90 via-transparent to-transparent z-10 opacity-80" />
@@ -93,7 +93,7 @@ export default function AboutPage() {
           <div className="lg:col-span-7">
             <span className="text-primary-900 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Our Leadership</span>
             <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-8 font-serif leading-tight">Meet The <span className="italic text-primary-900">Visionary</span></h2>
-            <div className="prose prose-lg text-gray-500 leading-relaxed max-w-none font-light">
+            <div className="prose prose-lg text-gray-700 leading-relaxed max-w-none font-light">
               <p className="mb-8 text-xl text-gray-900 font-medium font-serif italic">
                 Joseph Adeniran is a recognized mentor, leadership strategist, and deeply passionate teacher.
               </p>
@@ -116,7 +116,7 @@ export default function AboutPage() {
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="text-primary-900 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Alignment</span>
           <h2 className="text-4xl md:text-6xl font-medium text-gray-900 mb-8 font-serif italic">Our Core Values</h2>
-          <p className="text-lg text-gray-500 font-light leading-relaxed">
+          <p className="text-lg text-gray-700 font-light leading-relaxed">
             These distinguishing principles dictate how we operate, how we teach, and the character traits we strive to instill in every member of our academy.
           </p>
         </div>
@@ -153,7 +153,7 @@ export default function AboutPage() {
                 {value.icon}
               </div>
               <h3 className="text-xl font-bold text-gray-900 mb-4 tracking-tight uppercase text-sm tracking-widest">{value.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed font-light">{value.desc}</p>
+              <p className="text-gray-700 text-sm leading-relaxed font-light">{value.desc}</p>
             </div>
           ))}
         </div>
