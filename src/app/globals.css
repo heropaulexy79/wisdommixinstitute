@@ -38,12 +38,7 @@
   --foreground: #0a0a0a; /* Deep Onyx */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #fafaf9;
-  }
-}
+
 
 body {
   background: var(--background);
