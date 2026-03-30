@@ -22,32 +22,34 @@ export default function CTASection({
   secondaryButtonHref = "/programs",
 }: CTASectionProps) {
   return (
-    <div className="bg-primary-950 relative overflow-hidden">
-      {/* Abstract Background Patterns */}
+    <div className="bg-[#051a14] relative overflow-hidden">
+      {/* Premium Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-primary-800/30 blur-3xl" />
-        <div className="absolute top-[60%] -right-[10%] w-[40%] h-[60%] rounded-full bg-accent-600/20 blur-3xl" />
+        <div className="absolute -top-[30%] -left-[10%] w-[70%] h-[70%] rounded-full bg-primary-900/40 blur-[120px] animate-pulse" />
+        <div className="absolute top-[50%] -right-[20%] w-[60%] h-[80%] rounded-full bg-accent-950/30 blur-[100px]" />
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-overlay" />
       </div>
 
-      <SectionWrapper className="relative z-10 text-center !py-12 md:!py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight">
+      <SectionWrapper className="relative z-10 text-center !py-24 md:!py-32">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col items-center">
+          <span className="text-primary-400 font-bold tracking-[0.3em] uppercase text-xs mb-8 block">Ready to Begin?</span>
+          <h2 className="text-4xl md:text-7xl font-medium text-white mb-8 tracking-tight font-serif italic leading-[1.1]">
             {title}
           </h2>
-          <p className="text-lg md:text-xl text-primary-100/80 mb-10 leading-relaxed font-light text-center">
+          <p className="text-xl md:text-2xl text-primary-100/70 mb-12 leading-relaxed font-light text-center max-w-2xl">
             {subtitle}
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 w-full sm:w-auto">
             <Link
               href={primaryButtonHref}
-              className="w-64 sm:w-auto px-7 py-2.5 md:px-8 md:py-4 rounded-full bg-accent-500 text-white font-bold text-base md:text-lg hover:bg-accent-400 hover:scale-105 transition-all shadow-lg shadow-accent-500/30 flex items-center justify-center group"
+              className="w-full sm:w-auto px-12 py-5 rounded-full bg-white text-primary-900 font-black uppercase text-sm tracking-widest hover:bg-primary-100 transition-all shadow-2xl active:scale-95 flex items-center justify-center group"
             >
               {primaryButtonText}
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-2 transition-transform" />
             </Link>
             <Link
               href={secondaryButtonHref}
-              className="w-64 sm:w-auto px-7 py-2.5 md:px-8 md:py-4 rounded-full bg-white/10 text-white font-bold text-base md:text-lg border border-white/20 hover:bg-white/20 transition-all flex items-center justify-center"
+              className="w-full sm:w-auto px-12 py-5 rounded-full bg-white/5 backdrop-blur-xl text-white font-black uppercase text-sm tracking-widest border border-white/10 hover:bg-white/10 transition-all flex items-center justify-center text-center"
             >
               {secondaryButtonText}
             </Link>

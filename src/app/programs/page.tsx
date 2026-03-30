@@ -1,10 +1,11 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import SectionWrapper from "@/components/SectionWrapper";
 import CTASection from "@/components/CTASection";
 import { Compass, BookOpen, Brain, Users, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Our Programs | Wisdommix Institute",
+  title: "Our Programs | Wisdommix Academy",
   description: "Explore our comprehensive transformational programs: Leadership Development, Discipleship Training, Mind Transformation, and Mentorship Systems.",
 };
 
@@ -71,61 +72,71 @@ export default function ProgramsPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-primary-950 py-10 md:py-16 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-primary-900 rounded-l-full blur-3xl opacity-50" />
+      <section className="bg-[#051a14] py-24 md:py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-overlay" />
+        <div className="absolute -top-[30%] -right-[10%] w-[70%] h-[70%] rounded-full bg-primary-900/40 blur-[120px]" />
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
-            Transformational <span className="text-accent-400">Programs</span>
+          <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-black uppercase text-xs tracking-[0.2em] mb-8">
+            Our Curriculum
+          </span>
+          <h1 className="text-5xl md:text-7xl font-medium text-white mb-8 tracking-tight font-serif italic leading-[1.1]">
+            Transformational <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">Programs</span>
           </h1>
-          <p className="text-xl text-primary-100 max-w-2xl mx-auto">
-            Carefully curated tracks designed to push you beyond your limits and forge you into an exceptional leader.
+          <p className="text-xl text-primary-100/80 max-w-3xl mx-auto font-light leading-relaxed">
+            Carefully curated tracks designed to push you beyond your limits and forge you into an exceptional leader of impact.
           </p>
         </div>
       </section>
 
       {/* Programs List */}
-      <div className="bg-white">
+      <div className="bg-white py-24">
         <SectionWrapper className="!py-0">
-          <div className="flex flex-col gap-6 md:gap-10">
+          <div className="flex flex-col gap-12 md:gap-20">
             {programs.map((program, index) => (
               <div 
                 key={program.id} 
                 id={program.id}
-                className="relative"
+                className="relative group"
               >
-                <div className={`rounded-3xl border ${program.borderColor} bg-gradient-to-br ${program.bgPrimary} p-5 md:p-8 lg:p-10 shadow-sm overflow-hidden relative`}>
+                <div className="rounded-[3rem] border border-gray-100 bg-gray-50/50 p-8 md:p-14 lg:p-20 shadow-sm hover:shadow-premium transition-all duration-700 overflow-hidden relative">
                   
-                  {/* Optional background decorative element */}
-                  <div className="absolute -right-20 -bottom-20 opacity-5 pointer-events-none transform scale-150">
+                  {/* Background decorative element */}
+                  <div className="absolute -right-20 -bottom-20 opacity-[0.03] pointer-events-none transform scale-[3] text-primary-900 group-hover:opacity-[0.07] transition-all duration-700">
                     {program.icon}
                   </div>
     
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-                    <div>
-                      <div className="w-20 h-20 rounded-2xl bg-white shadow-sm flex items-center justify-center mb-8 border border-white">
-                        {program.icon}
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10 text-left">
+                    <div className="lg:col-span-7">
+                      <div className="w-20 h-20 rounded-2xl bg-primary-900 flex items-center justify-center mb-10 shadow-xl shadow-primary-900/10 group-hover:scale-110 transition-transform">
+                        <div className="text-white">
+                          {program.icon}
+                        </div>
                       </div>
-                      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                      <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-8 font-serif italic leading-tight">
                         {program.title}
                       </h2>
-                      <p className="text-lg text-gray-600 mb-8 leading-relaxed text-left md:text-justify">
+                      <p className="text-lg text-gray-500 mb-10 leading-relaxed font-light">
                         {program.description}
                       </p>
-                      <a 
+                      <Link 
                         href="/contact" 
-                        className="w-64 md:w-auto inline-flex items-center justify-center px-6 py-2 md:px-6 md:py-3 rounded-full bg-primary-600 text-white font-semibold hover:bg-primary-600/90 transition-colors shadow-sm text-sm md:text-base mx-auto md:mx-0"
+                        className="px-10 py-4 rounded-full bg-primary-900 text-white font-black uppercase text-sm tracking-widest hover:bg-black transition-all shadow-xl active:scale-95 inline-flex"
                       >
                         Enroll in this Program
-                      </a>
+                      </Link>
                     </div>
     
-                    <div className="bg-white/80 backdrop-blur-md rounded-2xl p-8 border border-white shadow-sm">
-                      <h3 className="text-xl font-bold text-gray-900 mb-6">What You Will Learn</h3>
-                      <ul className="space-y-4">
+                    <div className="lg:col-span-5 bg-white rounded-[2.5rem] p-10 md:p-12 border border-gray-100 shadow-premium relative overflow-hidden">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-primary-100/20 rounded-full blur-3xl -mr-16 -mt-16" />
+                      <h3 className="text-xl font-bold text-gray-900 mb-8 tracking-widest uppercase text-xs border-b border-gray-100 pb-4">Key Outcomes</h3>
+                      <ul className="space-y-6">
                         {program.benefits.map((benefit, i) => (
-                          <li key={i} className="flex items-start">
-                            <CheckCircle2 className="w-5 h-5 text-green-500 mr-3 shrink-0 mt-0.5" />
-                            <span className="text-gray-700 font-medium">{benefit}</span>
+                          <li key={i} className="flex items-start group/item">
+                            <div className="mr-4 mt-1 bg-primary-50 rounded-full p-1 group-hover/item:bg-primary-900 group-hover/item:text-white transition-colors">
+                              <CheckCircle2 className="w-4 h-4 text-primary-900 group-hover/item:text-white" />
+                            </div>
+                            <span className="text-gray-600 font-light leading-snug">{benefit}</span>
                           </li>
                         ))}
                       </ul>

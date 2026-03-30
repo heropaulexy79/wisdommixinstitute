@@ -13,8 +13,8 @@ const slides = [
     title: "Raising Transformed Leaders for",
     highlight: "Lasting Impact",
     description:
-      "Join Wisdommix Institute to experience deep spiritual growth, mental transformation, and capacity building for exceptional leadership.",
-    cta1: "Join the Institute",
+      "Join Wisdommix Academy to experience deep spiritual growth, mental transformation, and capacity building for exceptional leadership.",
+    cta1: "Join the Academy",
     cta1Link: "/contact",
     cta2: "Explore Programs",
     cta2Link: "/programs",
@@ -88,7 +88,7 @@ export default function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pb-32 md:pb-40">
+      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-24 pb-48 md:pb-56">
         <div className="max-w-3xl">
           <AnimatePresence mode="wait">
             <motion.div
@@ -98,32 +98,32 @@ export default function HeroSlider() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium text-sm mb-6">
-                <span className="flex h-2 w-2 rounded-full bg-primary-400 mr-2 animate-pulse" />
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-medium text-xs md:text-sm mb-8 tracking-[0.2em] uppercase">
+                <span className="flex h-2 w-2 rounded-full bg-primary-400 mr-3 animate-pulse" />
                 {slides[currentSlide].tagline}
               </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mb-6 text-balance leading-tight">
+              <h1 className="text-3xl md:text-5xl lg:text-7xl font-medium text-white tracking-tight mb-8 text-balance font-serif italic leading-[1.1]">
                 {slides[currentSlide].title}{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-emerald-300">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 block md:inline not-italic font-sans font-black uppercase tracking-tighter">
                   {slides[currentSlide].highlight}
                 </span>
               </h1>
-              <p className="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl text-left">
+              <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl text-left leading-relaxed font-light">
                 {slides[currentSlide].description}
               </p>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full sm:w-auto">
                 <Link
                   href={slides[currentSlide].cta1Link}
-                  className="w-64 sm:w-auto px-7 py-2.5 md:px-8 md:py-4 rounded-full bg-primary-500 text-white font-bold text-base md:text-lg hover:bg-primary-600 hover:shadow-xl hover:shadow-primary-500/30 transition-all transform hover:-translate-y-1 text-center flex items-center justify-center"
+                  className="w-full sm:w-auto px-10 py-4 rounded-full bg-primary-900 text-white font-bold text-base md:text-lg hover:bg-black hover:shadow-2xl hover:shadow-white/10 transition-all transform hover:-translate-y-1 text-center flex items-center justify-center border border-white/10"
                 >
                   {slides[currentSlide].cta1}
                 </Link>
                 <Link
                   href={slides[currentSlide].cta2Link}
-                  className="w-64 sm:w-auto px-7 py-2.5 md:px-8 md:py-4 rounded-full bg-white/10 backdrop-blur-md text-white font-bold text-base md:text-lg border border-white/30 hover:bg-white/20 transition-all flex items-center justify-center text-center group"
+                  className="w-full sm:w-auto px-10 py-4 rounded-full bg-white/5 backdrop-blur-xl text-white font-bold text-base md:text-lg border border-white/20 hover:bg-white/10 transition-all flex items-center justify-center text-center group"
                 >
                   {slides[currentSlide].cta2}
-                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
                 </Link>
               </div>
             </motion.div>

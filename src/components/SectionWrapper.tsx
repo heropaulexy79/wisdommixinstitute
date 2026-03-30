@@ -17,13 +17,17 @@ export default function SectionWrapper({
   delay = 0,
 }: SectionWrapperProps) {
   return (
-    <section id={id} className={className}>
+    <section id={id} className={`relative overflow-hidden ${className}`}>
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5, delay }}
-        className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
+        transition={{ 
+          duration: 0.8, 
+          delay,
+          ease: [0.21, 0.47, 0.32, 0.98] 
+        }}
+        className="section-padding px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto"
       >
         {children}
       </motion.div>

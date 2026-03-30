@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Contact Us | Wisdommix Institute',
+  title: 'Contact Us | Wisdommix Academy',
   description: 'Reach out to us for more information on our leadership development and mentorship programs.',
 }
 

@@ -41,68 +41,76 @@ export default function ContactPage() {
 
   return (
     <>
-      <section className="bg-primary-950 py-20 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-accent-500 rounded-l-full blur-[120px] opacity-20" />
+      <section className="bg-[#051a14] py-24 md:py-36 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-overlay" />
+        <div className="absolute -top-[30%] -right-[10%] w-[70%] h-[70%] rounded-full bg-primary-900/40 blur-[120px]" />
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-6">
-            Get in <span className="text-accent-400">Touch</span>
+          <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-black uppercase text-xs tracking-[0.2em] mb-8">
+            Connect With Us
+          </span>
+          <h1 className="text-5xl md:text-7xl font-medium text-white mb-10 tracking-tight max-w-5xl mx-auto font-serif italic leading-[1.1]">
+            Get in <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">Touch</span>
           </h1>
-          <p className="text-xl text-primary-100 max-w-2xl mx-auto">
-            Have questions about our programs, mentorship, or events? We'd love to hear from you.
+          <p className="text-xl md:text-2xl text-primary-100/80 max-w-3xl mx-auto font-light leading-relaxed">
+            Have questions about our programs, mentorship, or events? We&apos;d love to hear from you and walk this journey together.
           </p>
         </div>
       </section>
 
-      <SectionWrapper className="bg-gray-50/50">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+      <SectionWrapper className="bg-white py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           
           {/* Contact Info */}
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Contact Information</h2>
-            <p className="text-lg text-gray-600 mb-10 leading-relaxed">
+            <span className="text-primary-900 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Information</span>
+            <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-8 font-serif italic">Contact Details</h2>
+            <p className="text-lg text-gray-500 mb-12 leading-relaxed font-light">
               We are committed to helping you on your transformation journey. Reach out through any of the channels below or fill out the form.
             </p>
             
-            <div className="space-y-8">
-              <div className="flex items-start">
-                <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center shrink-0 mr-5 border border-primary-100">
-                  <MapPin className="w-6 h-6 text-primary-600" />
+            <div className="space-y-10">
+              <div className="flex items-start group">
+                <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center shrink-0 mr-6 border border-gray-100 group-hover:bg-primary-900 group-hover:text-white transition-all duration-300">
+                  <MapPin className="w-6 h-6 text-gray-900 group-hover:text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900">Our Location</h3>
-                  <p className="text-gray-600 mt-1">Lagos, Nigeria</p>
+                  <h3 className="text-lg font-bold text-gray-900 tracking-tight uppercase text-xs tracking-widest mb-1">Our Location</h3>
+                  <p className="text-gray-500 font-light">Lagos, Nigeria</p>
                 </div>
               </div>
               
-              <div className="flex items-start">
-                <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center shrink-0 mr-5 border border-primary-100">
-                  <Phone className="w-6 h-6 text-primary-600" />
+              <div className="flex items-start group">
+                <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center shrink-0 mr-6 border border-gray-100 group-hover:bg-primary-900 group-hover:text-white transition-all duration-300">
+                  <Phone className="w-6 h-6 text-gray-900 group-hover:text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900">Phone Number</h3>
-                  <p className="text-gray-600 mt-1">+234 123 456 7890</p>
+                  <h3 className="text-lg font-bold text-gray-900 tracking-tight uppercase text-xs tracking-widest mb-1">Phone Number</h3>
+                  <p className="text-gray-500 font-light">+234 123 456 7890</p>
                 </div>
               </div>
               
-              <div className="flex items-start">
-                <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center shrink-0 mr-5 border border-primary-100">
-                  <Mail className="w-6 h-6 text-primary-600" />
+              <div className="flex items-start group">
+                <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center shrink-0 mr-6 border border-gray-100 group-hover:bg-primary-900 group-hover:text-white transition-all duration-300">
+                  <Mail className="w-6 h-6 text-gray-900 group-hover:text-white" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-gray-900">Email Address</h3>
-                  <p className="text-gray-600 mt-1">hello@wisdommixinstitute.com</p>
+                  <h3 className="text-lg font-bold text-gray-900 tracking-tight uppercase text-xs tracking-widest mb-1">Email Address</h3>
+                  <p className="text-gray-500 font-light">hello@wisdommixacademy.com</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <div className="bg-white rounded-3xl p-8 md:p-10 border border-gray-100 shadow-xl shadow-primary-900/5">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Send us a Message</h3>
+          <div className="bg-white rounded-[3rem] p-10 md:p-14 border border-gray-100 shadow-premium relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary-100/10 rounded-full blur-[100px] -mr-32 -mt-32" />
             
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+            <h3 className="text-2xl font-medium text-gray-900 mb-10 font-serif italic border-b border-gray-50 pb-6">Send us a Message</h3>
+            
+            <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
+              <div className="space-y-2">
+                <label htmlFor="name" className="text-xs font-black uppercase tracking-[0.2em] text-gray-400 block ml-1">Full Name</label>
                 <input
                   type="text"
                   id="name"
@@ -110,13 +118,13 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all bg-gray-50/50"
+                  className="w-full px-6 py-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-primary-900 focus:border-primary-900 outline-none transition-all bg-gray-50/30 text-gray-900 font-medium placeholder:text-gray-300"
                   placeholder="John Doe"
                 />
               </div>
               
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-xs font-black uppercase tracking-[0.2em] text-gray-400 block ml-1">Email Address</label>
                 <input
                   type="email"
                   id="email"
@@ -124,13 +132,13 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all bg-gray-50/50"
+                  className="w-full px-6 py-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-primary-900 focus:border-primary-900 outline-none transition-all bg-gray-50/30 text-gray-900 font-medium placeholder:text-gray-300"
                   placeholder="john@example.com"
                 />
               </div>
               
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">Your Message</label>
+              <div className="space-y-2">
+                <label htmlFor="message" className="text-xs font-black uppercase tracking-[0.2em] text-gray-400 block ml-1">Your Message</label>
                 <textarea
                   id="message"
                   name="message"
@@ -138,27 +146,27 @@ export default function ContactPage() {
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition-all resize-none bg-gray-50/50"
+                  className="w-full px-6 py-4 rounded-2xl border border-gray-100 focus:ring-2 focus:ring-primary-900 focus:border-primary-900 outline-none transition-all resize-none bg-gray-50/30 text-gray-900 font-medium placeholder:text-gray-300"
                   placeholder="How can we help you?"
                 ></textarea>
               </div>
 
               {isSuccess && (
-                <div className="p-4 rounded-xl bg-green-50 text-green-700 border border-green-200 flex items-center">
-                  <CheckCircle className="w-5 h-5 mr-3 shrink-0" />
-                  <p>Your message has been sent successfully. We will get back to you soon.</p>
+                <div className="p-5 rounded-[1.5rem] bg-primary-900 text-white border border-primary-800 flex items-center shadow-xl animate-in fade-in slide-in-from-bottom-4 duration-500">
+                  <CheckCircle className="w-6 h-6 mr-4 shrink-0" />
+                  <p className="font-medium text-sm">Your message has been sent successfully. We will get back to you soon.</p>
                 </div>
               )}
               
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full py-4 rounded-xl text-white font-bold text-lg flex items-center justify-center transition-all ${
-                  isSubmitting ? "bg-primary-400 cursor-not-allowed" : "bg-primary-600 hover:bg-primary-700 hover:shadow-lg hover:-translate-y-0.5"
+                className={`w-full py-5 rounded-2xl text-white font-black uppercase text-sm tracking-widest flex items-center justify-center transition-all shadow-xl active:scale-95 ${
+                  isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-primary-900 hover:bg-black"
                 }`}
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
-                {!isSubmitting && <Send className="ml-2 w-5 h-5" />}
+                {!isSubmitting && <Send className="ml-3 w-4 h-4" />}
               </button>
             </form>
           </div>

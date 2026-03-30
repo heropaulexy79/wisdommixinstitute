@@ -44,21 +44,22 @@ export default function RecentEvents() {
 
   return (
     <SectionWrapper id="upcoming-events" className="bg-white border-t border-gray-100">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+      <div className="flex flex-col md:flex-row justify-between items-end mb-16">
         <div className="max-w-2xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <span className="text-primary-900 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Calendar</span>
+          <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-6 font-serif italic">
             Upcoming Events
           </h2>
-          <p className="text-gray-600 text-lg">
-            Join us at our upcoming life-transforming sessions, seminars, and training programs.
+          <p className="text-gray-500 text-lg font-light leading-relaxed">
+            Join us at our upcoming life-transforming sessions, seminars, and training programs designed for your total growth.
           </p>
         </div>
         <Link 
           href="/events" 
-          className="group hidden md:flex items-center text-primary-600 font-semibold hover:text-primary-700 transition-colors"
+          className="group hidden md:flex items-center text-primary-900 font-black uppercase text-xs tracking-[0.2em] hover:text-black transition-colors border-b-2 border-primary-900 pb-1"
         >
           View All Events
-          <ArrowRight className="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+          <ArrowRight className="ml-3 w-4 h-4 transform group-hover:translate-x-2 transition-transform" />
         </Link>
       </div>
 
