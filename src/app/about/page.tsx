@@ -21,7 +21,7 @@ export default function AboutPage() {
           <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-black uppercase text-xs tracking-[0.2em] mb-8">
             Who We Are
           </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-10 tracking-tight max-w-5xl mx-auto font-serif italic leading-[1.1]">
+          <h1 className="text-5xl md:text-6xl lg:text-8xl font-medium text-white mb-10 tracking-tight max-w-5xl mx-auto font-serif italic leading-[1.1]">
             About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">Wisdommix Academy</span>
           </h1>
           <p className="text-xl md:text-2xl text-primary-100/80 max-w-4xl mx-auto leading-relaxed font-light">
@@ -115,7 +115,7 @@ export default function AboutPage() {
       <SectionWrapper id="core-values" className="bg-white">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <span className="text-primary-900 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Alignment</span>
-          <h2 className="text-4xl md:text-6xl font-medium text-gray-900 mb-8 font-serif italic">Our Core Values</h2>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-gray-900 mb-8 font-serif italic">Our Core Values</h2>
           <p className="text-lg text-gray-700 font-light leading-relaxed">
             These distinguishing principles dictate how we operate, how we teach, and the character traits we strive to instill in every member of our academy.
           </p>

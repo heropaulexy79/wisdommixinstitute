@@ -99,7 +99,7 @@ export default function Home() {
         
         <div className="text-center max-w-4xl mx-auto mb-24 relative z-10">
           <span className="text-primary-300 font-bold tracking-[0.3em] uppercase text-xs mb-6 block">The Foundation</span>
-          <h2 className="text-4xl md:text-7xl font-medium text-white mb-10 font-serif italic leading-tight">Our Core Pillars</h2>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-medium text-white mb-10 font-serif italic leading-tight">Our Core Pillars</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-transparent via-primary-400 to-transparent mx-auto mb-10" />
           <p className="text-xl text-primary-100/70 font-light max-w-2xl mx-auto leading-relaxed">
             The bedrock of our transformational system, meticulously designed to forge exceptional leaders of character and impact.
@@ -157,7 +157,7 @@ export default function Home() {
           
           <div className="relative p-12 md:p-24 lg:p-32 text-center max-w-5xl mx-auto flex flex-col items-center">
             <span className="text-primary-300 font-black tracking-[0.3em] uppercase text-xs mb-6 block">Structured Growth</span>
-            <h2 className="text-4xl md:text-8xl font-medium text-white mb-10 font-serif italic leading-tight">Comprehensive Education</h2>
+            <h2 className="text-4xl md:text-6xl lg:text-8xl font-medium text-white mb-10 font-serif italic leading-tight">Comprehensive Education</h2>
             <p className="text-xl text-primary-100/70 mb-12 leading-relaxed max-w-3xl font-light">
               Whether you are looking to refine your leadership skills, understand your spiritual identity, or receive personalized guidance, our curated programs are tailored for your elevation.
             </p>
@@ -179,7 +179,7 @@ export default function Home() {
             &ldquo;
           </div>
           <div className="relative z-10 text-center max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-medium text-gray-900 mb-12 font-serif italic leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-gray-900 mb-12 font-serif italic leading-tight">
               &ldquo;Self Leadership is the ability to receive sense early knowing that what you're not doing at the moment has a negative impact on your life.&rdquo;
             </h2>
             <div className="flex flex-col items-center">

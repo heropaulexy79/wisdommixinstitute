@@ -54,7 +54,7 @@ export default function Navbar() {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-1 lg:space-x-2">
+          <div className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
               return (
@@ -86,7 +86,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-xl transition-colors text-gray-900 hover:bg-gray-100"
@@ -109,7 +109,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden absolute w-full shadow-2xl border-b border-gray-100 overflow-hidden bg-white text-gray-900"
+            className="lg:hidden absolute w-full shadow-2xl border-b border-gray-100 overflow-hidden bg-white text-gray-900"
           >
             <div className="px-4 pt-4 pb-8 space-y-2">
               {navLinks.map((link) => {
