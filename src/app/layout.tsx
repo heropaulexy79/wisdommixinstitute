@@ -32,10 +32,10 @@ export const metadata: Metadata = {
     siteName: 'NexLeadership Community',
     images: [
       {
-        url: '/New-NexLeadership Community_logo.png',
+        url: '/favicon.png',
         width: 1200,
         height: 630,
-        alt: 'NexLeadership Community Logo',
+        alt: 'NexLeadership Community Icon',
       },
     ],
     locale: 'en_US',
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'NexLeadership Community | Transformation & Leadership',
     description: 'Raising transformed leaders for lasting impact.',
-    images: ['/New-NexLeadership Community_logo.png'],
+    images: ['/favicon.png'],
   },
 }
 
