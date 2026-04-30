@@ -99,7 +99,7 @@ export default function MentorshipBookingSection() {
               <div className="space-y-4">
                 {[
                   { field: "name" as const, label: "Full Name", icon: <User className="w-3.5 h-3.5" />, type: "text", placeholder: "Joseph Adeniran" },
-                  { field: "email" as const, label: "Email Address", icon: <Mail className="w-3.5 h-3.5" />, type: "email", placeholder: "you@example.com" },
+                  { field: "email" as const, label: "Email Address", icon: <Mail className="w-3.5 h-3.5" />, type: "email", placeholder: "Nexleadershipcommunity@gmail.com" },
                   { field: "phone" as const, label: "Phone Number", icon: <Phone className="w-3.5 h-3.5" />, type: "tel", placeholder: "+234 800 000 0000" },
                 ].map(({ field, label, icon, type, placeholder }) => (
                   <div key={field} className="space-y-1.5">
