@@ -61,7 +61,7 @@ export default function HeroSlider() {
 
   return (
     <section 
-      className="relative h-[75dvh] md:h-[100dvh] min-h-[500px] md:min-h-[600px] w-full overflow-hidden bg-gray-950"
+      className="relative h-[80dvh] md:h-[100dvh] min-h-[500px] md:min-h-[600px] w-full overflow-hidden bg-gray-950"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -88,7 +88,7 @@ export default function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-20 pb-32 md:pb-56">
+      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-16 pb-24 md:pb-56">
         <div className="max-w-3xl">
           <AnimatePresence mode="wait">
             <motion.div
@@ -108,19 +108,19 @@ export default function HeroSlider() {
                   {slides[currentSlide].highlight}
                 </span>
               </h1>
-              <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl text-left leading-relaxed font-light">
+              <p className="text-base md:text-xl text-gray-300 mb-8 md:mb-12 max-w-2xl text-left leading-relaxed font-light">
                 {slides[currentSlide].description}
               </p>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-6 w-full sm:w-auto">
                 <Link
                   href={slides[currentSlide].cta1Link}
-                  className="w-full sm:w-auto px-10 py-4 rounded-full bg-primary-900 text-white font-bold text-base md:text-lg hover:bg-black hover:shadow-2xl hover:shadow-white/10 transition-all transform hover:-translate-y-1 text-center flex items-center justify-center border border-white/10"
+                  className="w-full sm:w-auto px-8 py-3.5 md:px-10 md:py-4 rounded-full bg-primary-900 text-white font-bold text-sm md:text-lg hover:bg-black hover:shadow-2xl hover:shadow-white/10 transition-all transform hover:-translate-y-1 text-center flex items-center justify-center border border-white/10"
                 >
                   {slides[currentSlide].cta1}
                 </Link>
                 <Link
                   href={slides[currentSlide].cta2Link}
-                  className="w-full sm:w-auto px-10 py-4 rounded-full bg-white/5 backdrop-blur-xl text-white font-bold text-base md:text-lg border border-white/20 hover:bg-white/10 transition-all flex items-center justify-center text-center group"
+                  className="w-full sm:w-auto px-8 py-3.5 md:px-10 md:py-4 rounded-full bg-white/5 backdrop-blur-xl text-white font-bold text-sm md:text-lg border border-white/20 hover:bg-white/10 transition-all flex items-center justify-center text-center group"
                 >
                   {slides[currentSlide].cta2}
                   <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform" />
