@@ -18,11 +18,34 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://wisdommixinstitute.vercel.app'),
   title: 'NexLeadership Community | Transformation & Leadership',
   description: 'Raising transformed leaders for lasting impact through leadership development, discipleship, mind transformation, and mentorship.',
   icons: {
     icon: '/favicon.png',
     apple: '/apple-touch.png',
+  },
+  openGraph: {
+    title: 'NexLeadership Community | Transformation & Leadership',
+    description: 'Raising transformed leaders for lasting impact through leadership development, discipleship, mind transformation, and mentorship.',
+    url: 'https://wisdommixinstitute.vercel.app', // Or actual domain if known
+    siteName: 'NexLeadership Community',
+    images: [
+      {
+        url: '/New-NexLeadership Community_logo.png',
+        width: 1200,
+        height: 630,
+        alt: 'NexLeadership Community Logo',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NexLeadership Community | Transformation & Leadership',
+    description: 'Raising transformed leaders for lasting impact.',
+    images: ['/New-NexLeadership Community_logo.png'],
   },
 }
 
