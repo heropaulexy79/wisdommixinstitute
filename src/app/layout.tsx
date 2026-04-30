@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   title: 'NexLeadership Community | Transformation & Leadership',
   description: 'Raising transformed leaders for lasting impact through leadership development, discipleship, mind transformation, and mentorship.',
   icons: {
-    icon: '/NexLeadership Community_favicon.png',
+    icon: '/favicon.png',
     apple: '/apple-touch.png',
   },
 }
