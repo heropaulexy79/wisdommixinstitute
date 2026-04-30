@@ -25,28 +25,6 @@ export const metadata: Metadata = {
     icon: '/favicon.png',
     apple: '/apple-touch.png',
   },
-  openGraph: {
-    title: 'NexLeadership Community | Transformation & Leadership',
-    description: 'Raising transformed leaders for lasting impact through leadership development, discipleship, mind transformation, and mentorship.',
-    url: 'https://wisdommixinstitute.vercel.app', // Or actual domain if known
-    siteName: 'NexLeadership Community',
-    images: [
-      {
-        url: '/favicon.png',
-        width: 1200,
-        height: 630,
-        alt: 'NexLeadership Community Icon',
-      },
-    ],
-    locale: 'en_US',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'NexLeadership Community | Transformation & Leadership',
-    description: 'Raising transformed leaders for lasting impact.',
-    images: ['/favicon.png'],
-  },
 }
 
 export default function RootLayout({
