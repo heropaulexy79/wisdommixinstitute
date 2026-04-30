@@ -61,7 +61,7 @@ export default function HeroSlider() {
 
   return (
     <section 
-      className="relative h-[100dvh] min-h-[600px] w-full overflow-hidden bg-gray-950"
+      className="relative h-[75dvh] md:h-[100dvh] min-h-[500px] md:min-h-[600px] w-full overflow-hidden bg-gray-950"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -88,7 +88,7 @@ export default function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-24 pb-48 md:pb-56">
+      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-20 pb-32 md:pb-56">
         <div className="max-w-3xl">
           <AnimatePresence mode="wait">
             <motion.div
