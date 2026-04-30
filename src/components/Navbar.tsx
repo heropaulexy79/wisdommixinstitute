@@ -36,17 +36,17 @@ export default function Navbar() {
         : "bg-white py-2"
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex justify-between items-center transition-all duration-500 ${scrolled ? "h-16" : "h-24"}`}>
+        <div className={`flex justify-between items-center transition-all duration-500 ${scrolled ? "h-20" : "h-28"}`}>
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
             <Link href="/" className="flex items-center group">
               <Image 
-                src="/logo.png" 
-                alt="Wisdommix Academy Logo" 
-                width={180} 
-                height={70} 
+                src="/New-NexLeadership Community_logo.png" 
+                alt="NexLeadership Community Logo" 
+                width={240} 
+                height={90} 
                 className={`w-auto object-contain transition-all duration-500 group-hover:scale-105 ${
-                  scrolled ? "h-8 md:h-10" : "h-10 md:h-12"
+                  scrolled ? "h-10 md:h-12" : "h-12 md:h-16"
                 }`}
                 priority
               />

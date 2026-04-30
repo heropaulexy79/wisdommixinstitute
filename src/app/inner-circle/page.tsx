@@ -5,7 +5,7 @@ import { Users, Star, Lock, Network, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "The Inner Circle | Wisdommix Academy",
+  title: "The Inner Circle | NexLeadership Community",
   description: "Join our exclusive private community of high-achievers. Network, learn, and grow alongside like-minded individuals.",
 };
 

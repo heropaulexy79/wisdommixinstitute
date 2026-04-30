@@ -21,7 +21,7 @@ export default function Home() {
                 className="absolute inset-0 w-full h-full grayscale hover:grayscale-0 transition-all duration-700"
                 frameBorder="0"
                 allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
-                title="Wisdommix Academy Transformation System"
+                title="NexLeadership Community Transformation System"
               ></iframe>
             </div>
             {/* Design Element */}
@@ -35,7 +35,7 @@ export default function Home() {
               A Proven System for <br/><span className="italic text-primary-900">Total Transformation</span>
             </h2>
             <p className="text-lg text-gray-600 mb-8 leading-relaxed font-light">
-              At Wisdommix Academy, we believe true leadership begins from within. Our unique transformational system is designed to break limitations, renew mindsets, and equip individuals with the spiritual and mental fortitude needed to lead effectively.
+              At NexLeadership Community, we believe true leadership begins from within. Our unique transformational system is designed to break limitations, renew mindsets, and equip individuals with the spiritual and mental fortitude needed to lead effectively.
             </p>
             <ul className="space-y-6 mb-10">
               <li className="flex items-start group">
@@ -185,7 +185,7 @@ export default function Home() {
             <div className="flex flex-col items-center">
               <div className="w-12 h-1 bg-primary-900 mb-6" />
               <p className="text-xs font-black uppercase tracking-[0.4em] text-gray-900">Joseph Adeniran</p>
-              <p className="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-2">Founder & Mentor, Wisdommix Academy</p>
+              <p className="text-[10px] uppercase tracking-[0.2em] text-gray-400 mt-2">Founder &amp; Mentor, NexLeadership Community</p>
             </div>
           </div>
         </div>

@@ -12,8 +12,8 @@ export default function Footer() {
           <div className="space-y-8">
             <Link href="/" className="flex items-center">
               <Image 
-                src="/logo.png" 
-                alt="Wisdommix Academy Logo" 
+                src="/New-NexLeadership Community_logo.png" 
+                alt="NexLeadership Community Logo" 
                 width={140} 
                 height={45} 
                 className="h-10 w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity"
@@ -113,7 +113,7 @@ export default function Footer() {
         
         <div className="mt-24 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <p className="text-xs font-bold tracking-[0.2em] uppercase text-gray-600">
-            &copy; {currentYear} Wisdommix Academy. Crafted for Excellence.
+            © {currentYear} NexLeadership Community. Crafted for Excellence.
           </p>
           <div className="flex space-x-10 text-[10px] font-black uppercase tracking-[0.3em] text-gray-600">
             <span className="hover:text-primary-300 cursor-pointer transition-colors">Privacy</span>

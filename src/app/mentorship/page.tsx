@@ -1,17 +1,18 @@
 import { Metadata } from "next";
 import SectionWrapper from "@/components/SectionWrapper";
-import CTASection from "@/components/CTASection";
-import { Compass, Sparkles, CheckCircle, Target, ArrowRight } from "lucide-react";
+import MentorshipBookingSection from "@/components/MentorshipBookingSection";
+import { Compass, Sparkles, CheckCircle, Target, ArrowDown } from "lucide-react";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "1-on-1 Mentorship | Wisdommix Academy",
+  title: "1-on-1 Mentorship | NexLeadership Community",
   description: "Accelerate your growth journey through personalized guidance and accountability from seasoned leaders.",
 };
 
 export default function MentorshipPage() {
   return (
     <>
+      {/* 1. HERO */}
       <section className="bg-[#051a14] py-24 md:py-36 relative overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.03] mix-blend-overlay" />
         <div className="absolute -top-[30%] -right-[10%] w-[70%] h-[70%] rounded-full bg-primary-900/40 blur-[120px]" />
@@ -21,7 +22,7 @@ export default function MentorshipPage() {
             <Compass className="w-8 h-8 text-primary-300" />
           </div>
           <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-black uppercase text-xs tracking-[0.2em] mb-8">
-            Personalized GUIDANCE
+            Personalized Guidance
           </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-10 tracking-tight max-w-5xl mx-auto font-serif italic leading-[1.1]">
             1-on-1 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">Mentorship</span>
@@ -30,15 +31,16 @@ export default function MentorshipPage() {
             Personalized guidance, rigorous accountability, and customized strategies to help you break through invisible ceilings and maximize your potential.
           </p>
           <Link
-            href="/contact"
-            className="px-12 py-5 rounded-full bg-white text-primary-900 font-black uppercase text-sm tracking-widest hover:bg-black hover:text-white transition-all shadow-2xl active:scale-95 group"
+            href="#book-session"
+            className="inline-flex items-center gap-3 px-12 py-5 rounded-full bg-white text-primary-900 font-black uppercase text-sm tracking-widest hover:bg-primary-50 transition-all shadow-2xl active:scale-95 group"
           >
-            Apply for Mentorship
-            <ArrowRight className="ml-3 w-5 h-5 inline transform group-hover:translate-x-2 transition-transform" />
+            Book a Session
+            <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
           </Link>
         </div>
       </section>
 
+      {/* 2. WHO IS THIS FOR + BENEFITS */}
       <SectionWrapper className="bg-white py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div>
@@ -72,22 +74,10 @@ export default function MentorshipPage() {
             <h3 className="text-3xl font-medium text-white mb-10 font-serif italic border-b border-white/10 pb-6">Program Benefits</h3>
             <ul className="space-y-8">
               {[
-                {
-                  title: "Diagnostic Assessment",
-                  desc: "Identify your core competencies, blind spots, and areas for immediate improvement."
-                },
-                {
-                  title: "Tailored Growth Map",
-                  desc: "A step-by-step personalized action plan perfectly aligned with your unique goals."
-                },
-                {
-                  title: "Unfiltered Feedback",
-                  desc: "Honest, constructive, and direct input to course-correct effectively."
-                },
-                {
-                  title: "Strict Accountability",
-                  desc: "Regular check-ins and performance tracking to ensure you stay on course."
-                }
+                { title: "Diagnostic Assessment", desc: "Identify your core competencies, blind spots, and areas for immediate improvement." },
+                { title: "Tailored Growth Map", desc: "A step-by-step personalized action plan perfectly aligned with your unique goals." },
+                { title: "Unfiltered Feedback", desc: "Honest, constructive, and direct input to course-correct effectively." },
+                { title: "Strict Accountability", desc: "Regular check-ins and performance tracking to ensure you stay on course." }
               ].map((benefit, idx) => (
                 <li key={idx} className="flex items-start relative group/item">
                   <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0 mr-5 mt-1 border border-white/20 group-hover/item:bg-white group-hover/item:text-primary-900 transition-all">
@@ -103,12 +93,32 @@ export default function MentorshipPage() {
           </div>
         </div>
       </SectionWrapper>
-      
-      <CTASection 
-        title="Stop Navigating Alone"
-        subtitle="The journey to greatness is steep. Having a seasoned guide makes all the difference."
-        primaryButtonText="Begin Your Application"
-      />
+
+      {/* 3. BOOKING SECTION */}
+      <section id="book-session" className="bg-gray-50/50 border-y border-gray-100 py-24 md:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-primary-900 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Reserve Your Spot</span>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium text-gray-900 mb-6 font-serif italic leading-tight">
+              Book a <span className="text-primary-900">Session</span>
+            </h2>
+            <div className="w-16 h-1 bg-primary-900 mx-auto mb-6" />
+            <p className="text-lg text-gray-500 font-light leading-relaxed">
+              Select your preferred date and time, complete your details, and secure your session with a ₦50 booking fee.
+            </p>
+          </div>
+
+          {/* Booking Form Card */}
+          <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-premium p-8 md:p-14 lg:p-16 relative overflow-hidden">
+            <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary-100/30 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-20 -left-20 w-48 h-48 bg-accent-100/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10">
+              <MentorshipBookingSection />
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

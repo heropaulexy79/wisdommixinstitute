@@ -5,7 +5,7 @@ import CTASection from "@/components/CTASection";
 import { Compass, BookOpen, Brain, Users, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Our Programs | Wisdommix Academy",
+  title: "Our Programs | NexLeadership Community",
   description: "Explore our comprehensive transformational programs: Leadership Development, Discipleship Training, Mind Transformation, and Mentorship Systems.",
 };
 

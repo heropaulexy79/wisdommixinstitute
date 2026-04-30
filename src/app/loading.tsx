@@ -18,8 +18,8 @@ export default function Loading() {
           className="mb-12"
         >
           <Image 
-            src="/logo.png" 
-            alt="Wisdommix Academy" 
+            src="/New-NexLeadership Community_logo.png" 
+            alt="NexLeadership Community" 
             width={180} 
             height={70} 
             className="h-12 w-auto object-contain brightness-0 invert"

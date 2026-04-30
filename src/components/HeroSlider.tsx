@@ -13,7 +13,7 @@ const slides = [
     title: "Raising Transformed Leaders for",
     highlight: "Lasting Impact",
     description:
-      "Join Wisdommix Academy to experience deep spiritual growth, mental transformation, and capacity building for exceptional leadership.",
+      "Join NexLeadership Community to experience deep spiritual growth, mental transformation, and capacity building for exceptional leadership.",
     cta1: "Join the Academy",
     cta1Link: "/contact",
     cta2: "Explore Programs",

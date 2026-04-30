@@ -18,10 +18,10 @@ const cormorant = Cormorant_Garamond({
 })
 
 export const metadata: Metadata = {
-  title: 'Wisdommix Academy | Transformation & Leadership',
+  title: 'NexLeadership Community | Transformation & Leadership',
   description: 'Raising transformed leaders for lasting impact through leadership development, discipleship, mind transformation, and mentorship.',
   icons: {
-    icon: '/favicon.png',
+    icon: '/NexLeadership Community_favicon.png',
     apple: '/apple-touch.png',
   },
 }

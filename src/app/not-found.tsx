@@ -39,7 +39,7 @@ export default function NotFound() {
       
       {/* Absolute decor */}
       <div className="absolute bottom-10 left-10 text-[8px] font-black uppercase tracking-[0.5em] text-white/10">
-        Wisdommix Academy &copy; 2026
+        NexLeadership Community &copy; 2026
       </div>
     </main>
   );

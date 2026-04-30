@@ -5,8 +5,8 @@ import { Target, Eye, TrendingUp, Shield, Compass, Zap } from "lucide-react";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "About Us | Wisdommix Academy",
-  description: "Learn more about Wisdommix Academy, our mission, vision, and the founder behind the transformational leadership platform.",
+  title: "About Us | NexLeadership Community",
+  description: "Learn more about NexLeadership Community, our mission, vision, and the founder behind the transformational leadership platform.",
 };
 
 export default function AboutPage() {
@@ -22,10 +22,10 @@ export default function AboutPage() {
             Who We Are
           </span>
           <h1 className="text-5xl md:text-6xl lg:text-8xl font-medium text-white mb-10 tracking-tight max-w-5xl mx-auto font-serif italic leading-[1.1]">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">Wisdommix Academy</span>
+            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">NexLeadership Community</span>
           </h1>
           <p className="text-xl md:text-2xl text-primary-100/80 max-w-4xl mx-auto leading-relaxed font-light">
-            Wisdommix Academy is a premier transformational platform dedicated to shaping the minds and capacities of individuals who aspire to lead with purpose, deep spiritual understanding, and unwavering excellence. We believe that true leadership requires a profound inner transformation before it can result in lasting outward impact.
+            NexLeadership Community is a premier transformational platform dedicated to shaping the minds and capacities of individuals who aspire to lead with purpose, deep spiritual understanding, and unwavering excellence. We believe that true leadership requires a profound inner transformation before it can result in lasting outward impact.
           </p>
         </div>
       </section>
@@ -98,13 +98,13 @@ export default function AboutPage() {
                 Joseph Adeniran is a recognized mentor, leadership strategist, and deeply passionate teacher.
               </p>
               <p className="mb-6">
-                With over a decade of experience guiding individuals through significant personal and professional transitions, he founded Wisdommix Academy to address a critical vacuum in holistic leader development.
+                With over a decade of experience guiding individuals through significant personal and professional transitions, he founded NexLeadership Community to address a critical vacuum in holistic leader development.
               </p>
               <p className="mb-6">
                 His unique approach intertwines robust scriptural principles with pragmatic, modern leadership frameworks. Joseph believes that authentic leadership cannot be simulated—it must be naturally produced through a renewed mind and a disciplined spirit.
               </p>
               <p>
-                Through Wisdommix Academy, Joseph continues to mentor hundreds of high-performing individuals, helping them clarify their life&apos;s calling, break through mental limitations, and execute their visions with pinpoint accuracy and uncommon grace.
+                Through NexLeadership Community, Joseph continues to mentor hundreds of high-performing individuals, helping them clarify their life&apos;s calling, break through mental limitations, and execute their visions with pinpoint accuracy and uncommon grace.
               </p>
             </div>
           </div>
