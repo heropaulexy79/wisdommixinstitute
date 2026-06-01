@@ -14,9 +14,13 @@ interface BookCardProps {
   image: string; // Keep for backward compatibility or first image
   images?: string[]; // Optional array of images
   description: string;
+  previewText?: string[];
+  onPreview?: () => void;
 }
 
-export default function BookCard({ id, title, author, price, image, images = [], description }: BookCardProps) {
+export default function BookCard({ 
+  id, title, author, price, image, images = [], description, previewText, onPreview 
+}: BookCardProps) {
   const { addToCart, removeFromCart, isInCart } = useCart();
   const inCart = isInCart(id);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -24,7 +28,8 @@ export default function BookCard({ id, title, author, price, image, images = [],
 
   const allImages = images.length > 0 ? images : [image];
 
-  const handleToggleCart = () => {
+  const handleToggleCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
     if (inCart) {
       removeFromCart(id);
     } else {
@@ -68,7 +73,10 @@ export default function BookCard({ id, title, author, price, image, images = [],
       viewport={{ once: true }}
       className={`bg-white rounded-[2.5rem] overflow-hidden border ${inCart ? "border-primary-900 ring-4 ring-primary-900/10" : "border-gray-100"} hover:shadow-premium transition-all duration-500 group flex flex-col`}
     >
-      <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+      <button 
+        onClick={onPreview}
+        className="relative aspect-[3/4] overflow-hidden bg-gray-100 text-left w-full cursor-pointer"
+      >
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentImageIndex}
@@ -93,10 +101,16 @@ export default function BookCard({ id, title, author, price, image, images = [],
         </AnimatePresence>
 
         {/* Hover overlay for description */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8 z-10 pointer-events-none">
-          <p className="text-white text-sm font-light leading-relaxed">
-            {description}
-          </p>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#051a14]/90 via-[#051a14]/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 z-10">
+          <div className="mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+            <span className="text-primary-300 text-[10px] font-black uppercase tracking-[0.2em] mb-2 block">Preview Available</span>
+            <p className="text-white text-sm font-light leading-relaxed line-clamp-3">
+              {description}
+            </p>
+          </div>
+          <div className="flex items-center gap-2 text-white font-black text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity delay-200">
+            Read Preview <BookOpen className="w-3 h-3" />
+          </div>
         </div>
 
         {/* Navigation Arrows */}
@@ -104,13 +118,13 @@ export default function BookCard({ id, title, author, price, image, images = [],
           <div className="absolute inset-0 flex items-center justify-between p-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <button
               onClick={prevImage}
-              className="p-2 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/40 transition-colors"
+              className="p-2 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/40 transition-colors pointer-events-auto"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={nextImage}
-              className="p-2 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/40 transition-colors"
+              className="p-2 rounded-full bg-white/20 backdrop-blur-md text-white hover:bg-white/40 transition-colors pointer-events-auto"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -145,16 +159,19 @@ export default function BookCard({ id, title, author, price, image, images = [],
             </div>
           </div>
         )}
-      </div>
+      </button>
 
       <div className="p-8 flex flex-col flex-grow">
         <div className="flex items-center gap-2 mb-4">
           <BookOpen className="w-4 h-4 text-accent-500" />
           <span className="text-xs font-bold uppercase tracking-widest text-primary-900/60">{author}</span>
         </div>
-        <h3 className="text-2xl font-medium text-gray-900 mb-4 font-serif italic leading-tight group-hover:text-primary-900 transition-colors">
+        <button 
+          onClick={onPreview}
+          className="text-2xl font-medium text-gray-900 mb-4 font-serif italic leading-tight group-hover:text-primary-900 transition-colors text-left hover:underline decoration-primary-900/20 underline-offset-4"
+        >
           {title}
-        </h3>
+        </button>
         
         <div className="mt-auto">
           <button

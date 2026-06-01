@@ -6,6 +6,7 @@ import BookCard from "@/components/BookCard";
 import { Search, Filter, ShoppingCart, ArrowRight, X, Trash2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import PurchaseModal from "@/components/PurchaseModal";
+import BookPreviewModal from "@/components/BookPreviewModal";
 import { useCart } from "@/context/CartContext";
 
 const BOOKS = [
@@ -22,6 +23,10 @@ const BOOKS = [
       "/KINGDOM, POWER AND BLESSING BACK PAGE.jpeg"
     ],
     description: "Unlock the spiritual principles of dominion and prosperity in the kingdom.",
+    previewText: [
+      "The concept of the Kingdom is not merely a religious sentiment but a blueprint for celestial governance on earth. To understand Kingdom power, one must first align with the heartbeat of the Sovereign. Power without alignment is chaos, but power within the structure of divine blessing is the catalyst for true transformation.",
+      "In this chapter, we explore how blessing is not just an addition of material wealth, but a spiritual empowerment that enables you to prosper in every season of life. When you walk in the blessing, the environment bows to your mandate, and you become a dispenser of the very life and authority you have received from the throne."
+    ]
   },
   {
     id: "leading-minds",
@@ -35,6 +40,10 @@ const BOOKS = [
       "/THE LEADING MIND2 BACKPAGE.jpeg"
     ],
     description: "Master the psychology of leadership and influence to shape the future.",
+    previewText: [
+      "Leadership starts between the ears. Before you can lead a multitude, you must first master the inner landscape of your own thoughts. The leading mind is one that has been disciplined to see possibilities where others see walls, and to remain calm in the eye of the storm.",
+      "This book delves into the cognitive architecture of influential leaders. We examine how focus, empathy, and strategic thinking combine to create a leadership presence that is both commanding and compassionate. Shaping the future requires a mind that is constantly renewing itself through wisdom and intentional action."
+    ]
   },
   {
     id: "one-of-a-kind",
@@ -48,6 +57,10 @@ const BOOKS = [
       "/ONE OF A KIND BACKPAGE.jpeg"
     ],
     description: "Discover your unique identity and purpose to stand out in a noisy world.",
+    previewText: [
+      "You were not created to be a carbon copy of someone else. In a world that constantly pressures us to conform, the greatest act of courage is to be authentically you. Your unique identity is your greatest competitive advantage and your most profound gift to humanity.",
+      "Finding your purpose is not a destination but a journey of unveiling. As you strip away the expectations of others, you begin to see the distinct patterns of your own design. This book is a guide to that unveiling, helping you to stand tall in your uniqueness and make the impact only you can make."
+    ]
   },
   {
     id: "the-rod-of-strength",
@@ -61,12 +74,18 @@ const BOOKS = [
       "/THE ROD OF STRENGTH BACKPAGE.jpeg"
     ],
     description: "Harness the power of inner strength and spiritual authority.",
+    previewText: [
+      "Strength is not always about the volume of your voice or the size of your stature. True strength is a quiet confidence that emanates from a deep connection to your source. The Rod of Strength symbolizes the authority that comes from being rooted in principle and guided by spirit.",
+      "When challenges arise, the resilient leader does not break; they bend and bounce back with greater momentum. This chapter teaches you how to cultivate an inner fortress that remains unshakeable in the face of adversity. By harnessing your spiritual authority, you can lead with a peace that surpasses understanding."
+    ]
   },
 ];
 
 export default function BooksPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedBook, setSelectedBook] = useState<any>(null);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCartPreview, setShowCartPreview] = useState(false);
   const { items, removeFromCart, clearCart, totalPrice, itemCount } = useCart();
@@ -74,6 +93,11 @@ export default function BooksPage() {
   const filteredBooks = BOOKS.filter((book) =>
     book.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handlePreview = (book: any) => {
+    setSelectedBook(book);
+    setIsPreviewOpen(true);
+  };
 
   const handleCheckout = () => {
     if (itemCount === 0) return;
@@ -177,7 +201,11 @@ export default function BooksPage() {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {filteredBooks.map((book) => (
-            <BookCard key={book.id} {...book} />
+            <BookCard 
+              key={book.id} 
+              {...book} 
+              onPreview={() => handlePreview(book)} 
+            />
           ))}
         </div>
 
@@ -293,6 +321,13 @@ export default function BooksPage() {
         cartItems={items}
         totalPrice={totalPrice}
         isSubmitting={isSubmitting}
+      />
+
+      {/* Book Preview Modal */}
+      <BookPreviewModal
+        isOpen={isPreviewOpen}
+        onClose={() => setIsPreviewOpen(false)}
+        book={selectedBook}
       />
     </div>
   );
