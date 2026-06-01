@@ -7,6 +7,8 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { reference } = body;
+    console.log("Verifying payment for reference:", reference);
+
 
     if (!reference) {
       return NextResponse.json({ error: "Missing payment reference" }, { status: 400 });
@@ -31,11 +33,15 @@ export async function POST(req: NextRequest) {
     const verifyData = await verifyRes.json();
 
     if (!verifyData.status || verifyData.data?.status !== "success") {
+      console.error("Paystack verification failed or status not success:", verifyData);
       return NextResponse.json({ error: "Payment verification failed" }, { status: 400 });
     }
 
+    console.log("Paystack verification successful. Data:", verifyData.data);
+
+
     // Extract metadata
-    const { email, customer } = verifyData.data;
+    const customerEmail = verifyData.data.customer.email;
     const metadata = verifyData.data.metadata;
     const bookTitle = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_title")?.value || "Your Book";
     const bookId = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_id")?.value;
@@ -46,13 +52,16 @@ export async function POST(req: NextRequest) {
     // For now, we use a placeholder link
     const downloadUrl = `${req.nextUrl.origin}/api/books/download?id=${bookId}&ref=${reference}`;
 
+    console.log(`Attempting to send email to ${customerEmail} for book "${bookTitle}" with URL: ${downloadUrl}`);
     // 1. Send Email
-    const emailSent = await sendBookEmail(email, bookTitle, downloadUrl);
+    const emailSent = await sendBookEmail(customerEmail, bookTitle, downloadUrl);
+    console.log("Email sent status:", emailSent);
+
 
     // 2. Log purchase to Firestore
     try {
       await addDoc(collection(db, "book_purchases"), {
-        email,
+        email: customerEmail,
         name: customerName,
         phone: customerPhone,
         bookId,

@@ -16,9 +16,13 @@ const transporter = nodemailer.createTransport({
 
 export async function sendBookEmail(to: string, bookTitle: string, downloadUrl: string) {
   if (!smtpEmail || !smtpPassword) {
-    console.error("SMTP configuration missing. Skipping email send.");
+    console.error("SMTP_EMAIL or SMTP_PASSWORD environment variables are missing!");
     return false;
   }
+
+
+  console.log(`Sending email via SMTP (${smtpEmail}) to ${to}...`);
+
 
   const mailOptions = {
     from: `"${fromName}" <${smtpEmail}>`,

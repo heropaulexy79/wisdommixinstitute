@@ -9,12 +9,15 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // Ideally, you would verify the reference again here or use a signed token
-  // For now, we'll map the bookId to a URL
-  
-  // This is a placeholder. In production, you would stream the file from Cloudflare R2
-  // or redirect to a signed URL.
-  const samplePdfUrl = process.env.NEXT_PUBLIC_SAMPLE_BOOK_URL || "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+  // Map bookId to specific PDF URLs from environment variables
+  const bookPdfs: Record<string, string | undefined> = {
+    "kingdom-power-and-blessing": process.env.BOOK_URL_KINGDOM_POWER,
+    "leading-minds": process.env.BOOK_URL_LEADING_MINDS,
+    "one-of-a-kind": process.env.BOOK_URL_ONE_OF_KIND,
+    "the-rod-of-strength": process.env.BOOK_URL_ROD_OF_STRENGTH,
+  };
 
-  return NextResponse.redirect(samplePdfUrl);
+  const pdfUrl = bookPdfs[bookId] || process.env.NEXT_PUBLIC_SAMPLE_BOOK_URL || "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
+
+  return NextResponse.redirect(pdfUrl);
 }

@@ -9,28 +9,36 @@ import PurchaseModal from "@/components/PurchaseModal";
 
 const MOCK_BOOKS = [
   {
-    id: "leadership-blueprint",
-    title: "The NexLeadership Blueprint",
+    id: "kingdom-power-and-blessing",
+    title: "Kingdom Power and Blessing",
     author: "Joseph Adeniran",
-    price: 5000,
+    price: 15000,
     image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=1000",
-    description: "A comprehensive guide to mastering modern leadership and building high-impact communities.",
+    description: "Unlock the spiritual principles of dominion and prosperity in the kingdom.",
   },
   {
-    id: "mindset-mastery",
-    title: "Mindset Mastery: The Art of Thinking Big",
+    id: "leading-minds",
+    title: "Leading Minds",
     author: "Joseph Adeniran",
-    price: 3500,
+    price: 15000,
     image: "https://images.unsplash.com/photo-1589998059171-d88d367a8ec7?auto=format&fit=crop&q=80&w=1000",
-    description: "Unlock the secrets of peak performance through psychological conditioning and strategic thinking.",
+    description: "Master the psychology of leadership and influence to shape the future.",
   },
   {
-    id: "strategic-alliances",
-    title: "Strategic Alliances",
+    id: "one-of-a-kind",
+    title: "One of a Kind",
     author: "Joseph Adeniran",
-    price: 4500,
+    price: 10000,
     image: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&q=80&w=1000",
-    description: "Learn how to build and leverage high-level networks to accelerate your growth and impact.",
+    description: "Discover your unique identity and purpose to stand out in a noisy world.",
+  },
+  {
+    id: "the-rod-of-strength",
+    title: "The Rod of Strength",
+    author: "Joseph Adeniran",
+    price: 10000,
+    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&q=80&w=1000",
+    description: "Harness the power of inner strength and spiritual authority.",
   },
 ];
 
