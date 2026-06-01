@@ -1,18 +1,25 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, User, Phone, Mail, Loader2, ArrowRight } from "lucide-react";
+import { X, User, Phone, Mail, Loader2, ArrowRight, BookOpen } from "lucide-react";
 import { useState } from "react";
+
+interface CartItem {
+  id: string;
+  title: string;
+  price: number;
+}
 
 interface PurchaseModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (data: { name: string; email: string; phone: string }) => void;
-  bookTitle: string;
+  cartItems: CartItem[];
+  totalPrice: number;
   isSubmitting: boolean;
 }
 
-export default function PurchaseModal({ isOpen, onClose, onSubmit, bookTitle, isSubmitting }: PurchaseModalProps) {
+export default function PurchaseModal({ isOpen, onClose, onSubmit, cartItems, totalPrice, isSubmitting }: PurchaseModalProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -42,7 +49,7 @@ export default function PurchaseModal({ isOpen, onClose, onSubmit, bookTitle, is
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl overflow-hidden"
+            className="relative w-full max-w-lg bg-white rounded-[2.5rem] shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto"
           >
             {/* Header */}
             <div className="bg-[#051a14] p-8 text-white relative">
@@ -56,9 +63,38 @@ export default function PurchaseModal({ isOpen, onClose, onSubmit, bookTitle, is
                 Confirm Purchase
               </span>
               <h2 className="text-2xl font-medium font-serif italic">
-                {bookTitle}
+                {cartItems.length === 1 ? cartItems[0].title : `${cartItems.length} Books Selected`}
               </h2>
             </div>
+
+            {/* Cart Summary */}
+            {cartItems.length > 1 && (
+              <div className="px-8 pt-6 pb-2 border-b border-gray-100">
+                <p className="text-[10px] font-black uppercase tracking-widest text-gray-400 mb-3">Order Summary</p>
+                <div className="space-y-2">
+                  {cartItems.map((item) => (
+                    <div key={item.id} className="flex justify-between items-center py-2">
+                      <div className="flex items-center gap-2">
+                        <BookOpen className="w-3.5 h-3.5 text-primary-900/40" />
+                        <span className="text-sm text-gray-700">{item.title}</span>
+                      </div>
+                      <span className="text-sm font-bold text-primary-900">₦{item.price.toLocaleString()}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex justify-between items-center pt-3 mt-3 border-t border-gray-100">
+                  <span className="text-sm font-bold text-gray-600">Total</span>
+                  <span className="text-lg font-black text-primary-900">₦{totalPrice.toLocaleString()}</span>
+                </div>
+              </div>
+            )}
+
+            {cartItems.length === 1 && (
+              <div className="px-8 pt-4 pb-2 flex justify-between items-center border-b border-gray-100">
+                <span className="text-sm text-gray-500">Amount</span>
+                <span className="text-lg font-black text-primary-900">₦{totalPrice.toLocaleString()}</span>
+              </div>
+            )}
 
             {/* Form */}
             <form onSubmit={handleSubmit} className="p-8 space-y-6">
@@ -125,7 +161,7 @@ export default function PurchaseModal({ isOpen, onClose, onSubmit, bookTitle, is
                     </>
                   ) : (
                     <>
-                      Secure Checkout
+                      Pay ₦{totalPrice.toLocaleString()}
                       <ArrowRight className="w-4 h-4" />
                     </>
                   )}
