@@ -43,8 +43,8 @@ const BOOKS = [
     price: 10000,
     image: "/ONE OF A KIND2.jpeg",
     images: [
-      "/ONE OF A KIND.jpeg",
       "/ONE OF A KIND2.jpeg",
+      "/ONE OF A KIND.jpeg",
       "/ONE OF A KIND BACKPAGE.jpeg"
     ],
     description: "Discover your unique identity and purpose to stand out in a noisy world.",
