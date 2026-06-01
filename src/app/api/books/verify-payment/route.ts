@@ -41,8 +41,8 @@ export async function POST(req: NextRequest) {
 
 
     // Extract metadata
-    const customerEmail = verifyData.data.customer.email;
-    const metadata = verifyData.data.metadata;
+    const { customer, metadata } = verifyData.data;
+    const customerEmail = customer.email;
     const bookTitle = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_title")?.value || "Your Book";
     const bookId = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_id")?.value;
     const customerName = metadata?.custom_fields?.find((f: any) => f.variable_name === "name")?.value || customer?.first_name || "Valued Customer";
