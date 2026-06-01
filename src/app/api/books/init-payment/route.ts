@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email, name, bookId, bookTitle, amount } = body;
+    const { email, name, phone, bookId, bookTitle, amount } = body;
 
     if (!email || !bookId) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -31,6 +31,7 @@ export async function POST(req: NextRequest) {
         metadata: {
           custom_fields: [
             { display_name: "Name", variable_name: "name", value: name },
+            { display_name: "Phone", variable_name: "phone", value: phone },
             { display_name: "Book Title", variable_name: "book_title", value: bookTitle },
             { display_name: "Book ID", variable_name: "book_id", value: bookId },
           ],

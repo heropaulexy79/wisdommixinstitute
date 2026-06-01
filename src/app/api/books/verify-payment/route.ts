@@ -40,6 +40,7 @@ export async function POST(req: NextRequest) {
     const bookTitle = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_title")?.value || "Your Book";
     const bookId = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_id")?.value;
     const customerName = metadata?.custom_fields?.find((f: any) => f.variable_name === "name")?.value || customer?.first_name || "Valued Customer";
+    const customerPhone = metadata?.custom_fields?.find((f: any) => f.variable_name === "phone")?.value || "";
 
     // In a real app, you would fetch this from a database or storage
     // For now, we use a placeholder link
@@ -53,6 +54,7 @@ export async function POST(req: NextRequest) {
       await addDoc(collection(db, "book_purchases"), {
         email,
         name: customerName,
+        phone: customerPhone,
         bookId,
         bookTitle,
         reference,

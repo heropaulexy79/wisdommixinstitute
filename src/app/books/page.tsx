@@ -5,6 +5,7 @@ import SectionWrapper from "@/components/SectionWrapper";
 import BookCard from "@/components/BookCard";
 import { Search, Filter, Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
+import PurchaseModal from "@/components/PurchaseModal";
 
 const MOCK_BOOKS = [
   {
@@ -36,62 +37,60 @@ const MOCK_BOOKS = [
 export default function BooksPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState<string | null>(null);
+  const [selectedBook, setSelectedBook] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const filteredBooks = MOCK_BOOKS.filter((book) =>
     book.title.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleBuy = async (bookId: string) => {
-    setLoading(bookId);
+  const handleBuyClick = (bookId: string) => {
+    const book = MOCK_BOOKS.find(b => b.id === bookId);
+    if (book) {
+      setSelectedBook(book);
+      setIsModalOpen(true);
+    }
+  };
+
+  const handlePurchaseSubmit = async (userData: { name: string; email: string; phone: string }) => {
+    if (!selectedBook) return;
+    
+    setIsSubmitting(true);
     try {
-      // We will implement the actual payment initialization later
-      // For now, let's just log it
-      console.log(`Initializing payment for book: ${bookId}`);
-      
-      // Get user info (mock for now, should be from a form or auth)
-      const userEmail = prompt("Please enter your email to receive the book:");
-      const userName = prompt("Please enter your name:");
-
-      if (!userEmail || !userName) {
-        setLoading(null);
-        return;
-      }
-
-      const book = MOCK_BOOKS.find(b => b.id === bookId);
-      if (!book) return;
-
       const res = await fetch("/api/books/init-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: userEmail,
-          name: userName,
-          bookId: book.id,
-          bookTitle: book.title,
-          amount: book.price,
+          email: userData.email,
+          name: userData.name,
+          phone: userData.phone,
+          bookId: selectedBook.id,
+          bookTitle: selectedBook.title,
+          amount: selectedBook.price,
         }),
       });
 
       const data = await res.json();
       if (data.authorization_url) {
-        // Save minimal info to session storage for recovery
         sessionStorage.setItem("nlc_book_purchase", JSON.stringify({
-          email: userEmail,
-          name: userName,
-          bookId: book.id,
-          bookTitle: book.title,
+          email: userData.email,
+          name: userData.name,
+          bookId: selectedBook.id,
+          bookTitle: selectedBook.title,
         }));
         window.location.href = data.authorization_url;
       } else {
         alert(data.error || "Failed to initialize payment");
+        setIsSubmitting(false);
       }
     } catch (error) {
       console.error("Purchase error:", error);
       alert("Something went wrong. Please try again.");
-    } finally {
-      setLoading(null);
+      setIsSubmitting(false);
     }
   };
+
 
   return (
     <div className="bg-white">
@@ -159,7 +158,7 @@ export default function BooksPage() {
               )}
               <BookCard
                 {...book}
-                onBuy={handleBuy}
+                onBuy={handleBuyClick}
               />
             </div>
           ))}
@@ -171,6 +170,14 @@ export default function BooksPage() {
           </div>
         )}
       </SectionWrapper>
+
+      <PurchaseModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handlePurchaseSubmit}
+        bookTitle={selectedBook?.title || ""}
+        isSubmitting={isSubmitting}
+      />
     </div>
   );
 }
