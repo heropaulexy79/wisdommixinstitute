@@ -41,7 +41,7 @@ const BOOKS = [
     title: "One of a Kind",
     author: "Joseph Adeniran",
     price: 10000,
-    image: "/ONE OF A KIND.jpeg",
+    image: "/ONE OF A KIND2.jpeg",
     images: [
       "/ONE OF A KIND.jpeg",
       "/ONE OF A KIND2.jpeg",
