@@ -43,44 +43,62 @@ export async function POST(req: NextRequest) {
     // Extract metadata
     const { customer, metadata } = verifyData.data;
     const customerEmail = customer.email;
-    const bookTitle = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_title")?.value || "Your Book";
-    const bookId = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_id")?.value;
     const customerName = metadata?.custom_fields?.find((f: any) => f.variable_name === "name")?.value || customer?.first_name || "Valued Customer";
     const customerPhone = metadata?.custom_fields?.find((f: any) => f.variable_name === "phone")?.value || "";
 
-    // In a real app, you would fetch this from a database or storage
-    // For now, we use a placeholder link
-    const downloadUrl = `${req.nextUrl.origin}/api/books/download?id=${bookId}&ref=${reference}`;
-
-    console.log(`Attempting to send email to ${customerEmail} for book "${bookTitle}" with URL: ${downloadUrl}`);
-    // 1. Send Email
-    const emailSent = await sendBookEmail(customerEmail, bookTitle, downloadUrl);
-    console.log("Email sent status:", emailSent);
-
-
-    // 2. Log purchase to Firestore
+    // Extract cart items
+    const cartItemsRaw = metadata?.custom_fields?.find((f: any) => f.variable_name === "cart_items")?.value;
+    let cartItems = [];
     try {
-      await addDoc(collection(db, "book_purchases"), {
-        email: customerEmail,
-        name: customerName,
-        phone: customerPhone,
-        bookId,
-        bookTitle,
-        reference,
-        amount: verifyData.data.amount / 100,
-        status: "success",
-        emailSent,
-        createdAt: serverTimestamp(),
-      });
+      cartItems = cartItemsRaw ? JSON.parse(cartItemsRaw) : [];
     } catch (e) {
-      console.error("Firestore logging error:", e);
+      console.error("Error parsing cart items:", e);
+    }
+
+    // Fallback for legacy single-book payments
+    if (cartItems.length === 0) {
+      const bookId = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_id")?.value;
+      const bookTitle = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_title")?.value || "Your Book";
+      if (bookId) cartItems.push({ id: bookId, title: bookTitle });
+    }
+
+    const results = [];
+    for (const item of cartItems) {
+      const { id: bookId, title: bookTitle } = item;
+      const downloadUrl = `${req.nextUrl.origin}/api/books/download?id=${bookId}&ref=${reference}`;
+
+      console.log(`Attempting to send email to ${customerEmail} for book "${bookTitle}" with URL: ${downloadUrl}`);
+      // 1. Send Email
+      const emailSent = await sendBookEmail(customerEmail, bookTitle, downloadUrl);
+      console.log(`Email sent status for "${bookTitle}":`, emailSent);
+
+
+      // 2. Log purchase to Firestore
+      try {
+        await addDoc(collection(db, "book_purchases"), {
+          email: customerEmail,
+          name: customerName,
+          phone: customerPhone,
+          bookId,
+          bookTitle,
+          reference,
+          amount: verifyData.data.amount / 100 / cartItems.length,
+          status: "success",
+          emailSent,
+          createdAt: serverTimestamp(),
+        });
+      } catch (e) {
+        console.error("Firestore logging error:", e);
+      }
+
+      results.push({ bookTitle, downloadUrl, emailSent });
     }
 
     return NextResponse.json({
       success: true,
-      bookTitle,
-      downloadUrl,
-      emailSent,
+      items: results,
+      bookTitle: results.length > 0 ? results[0].bookTitle : "Your Books",
+      downloadUrl: results.length > 0 ? results[0].downloadUrl : "",
     });
   } catch (error) {
     console.error("Payment verification error:", error);

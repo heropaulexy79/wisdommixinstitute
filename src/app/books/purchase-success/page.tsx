@@ -29,15 +29,7 @@ export default function PurchaseSuccessPage() {
         if (res.ok && data.success) {
           setPurchaseData(data);
           setStatus("success");
-          
-          // Show download prompt
-          setTimeout(() => {
-             const confirmDownload = window.confirm(`Your payment for "${data.bookTitle}" was successful! Would you like to download it now?`);
-             if (confirmDownload && data.downloadUrl) {
-               window.open(data.downloadUrl, "_blank");
-             }
-          }, 1000);
-          
+          // Popup removed as requested
         } else {
           setStatus("failed");
         }
@@ -70,30 +62,39 @@ export default function PurchaseSuccessPage() {
             </div>
             <h2 className="text-3xl font-medium font-serif italic text-gray-900 mb-4">Purchase Successful!</h2>
             <p className="text-gray-500 font-light mb-8 leading-relaxed">
-              Thank you for your purchase. A copy of <strong className="text-gray-800">{purchaseData?.bookTitle}</strong> has been sent to your email.
+              Thank you for your purchase. Your digital {purchaseData?.items?.length > 1 ? "books have" : "book has"} been sent to your email.
             </p>
 
             <div className="space-y-4 mb-8">
-              <a
-                href={purchaseData?.downloadUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-primary-900 text-white font-black text-xs uppercase tracking-widest hover:bg-black transition-all shadow-xl"
-              >
-                <Download className="w-5 h-5" /> Download Now
-              </a>
+              {purchaseData?.items?.map((item: any, index: number) => (
+                <div key={index} className="flex flex-col gap-2">
+                  <a
+                    href={item.downloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-primary-900 text-white font-black text-xs uppercase tracking-widest hover:bg-black transition-all shadow-xl"
+                  >
+                    <Download className="w-5 h-5" /> Download {item.bookTitle}
+                  </a>
+                </div>
+              ))}
               
               <div className="flex items-center justify-center gap-2 text-primary-900/60 text-xs font-bold uppercase tracking-widest">
-                <Mail className="w-4 h-4" /> Check your email for a permanent link
+                <Mail className="w-4 h-4" /> Check your email for permanent links
               </div>
             </div>
 
             <div className="bg-white rounded-[1.5rem] border border-gray-100 shadow-sm p-8 text-left mb-8">
-               <div className="flex justify-between text-sm mb-4">
-                 <span className="text-gray-400 uppercase text-xs font-bold tracking-wider">Item</span>
-                 <span className="font-semibold text-gray-800">{purchaseData?.bookTitle}</span>
+               <div className="space-y-4">
+                 <p className="text-gray-400 uppercase text-xs font-bold tracking-wider mb-2">Items</p>
+                 {purchaseData?.items?.map((item: any, index: number) => (
+                   <div key={index} className="flex justify-between text-sm py-2 border-b border-gray-50 last:border-0">
+                     <span className="font-semibold text-gray-800">{item.bookTitle}</span>
+                     <span className="text-primary-900 font-bold">Success</span>
+                   </div>
+                 ))}
                </div>
-               <div className="flex justify-between text-sm">
+               <div className="mt-6 flex justify-between text-sm">
                  <span className="text-gray-400 uppercase text-xs font-bold tracking-wider">Reference</span>
                  <span className="font-mono text-xs text-gray-600 break-all">{reference}</span>
                </div>
