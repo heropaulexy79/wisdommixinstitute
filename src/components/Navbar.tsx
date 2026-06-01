@@ -14,6 +14,7 @@ const navLinks = [
   { name: "Inner Circle", href: "/inner-circle" },
   { name: "Mentorship", href: "/mentorship" },
   { name: "Events", href: "/events" },
+  { name: "Books", href: "/books" },
 ];
 
 export default function Navbar() {
