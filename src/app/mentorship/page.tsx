@@ -105,7 +105,7 @@ export default function MentorshipPage() {
             </h2>
             <div className="w-16 h-1 bg-primary-900 mx-auto mb-6" />
             <p className="text-lg text-gray-500 font-light leading-relaxed">
-              Select your preferred date and time, complete your details, and secure your session with a ₦50 booking fee.
+              Select your preferred date and time, complete your details, and secure your 90-minute session starting from ₦25,000.
             </p>
           </div>
 

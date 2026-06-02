@@ -3,9 +3,12 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email, name, phone, date, time } = body;
+    const { email, name, phone, date, time, amount } = body;
 
     if (!email) return NextResponse.json({ error: "Email required" }, { status: 400 });
+    if (!amount || (amount !== 25000 && amount !== 50000)) {
+      return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
+    }
 
     const secretKey = process.env.PAYSTACK_SECRET_KEY;
     if (!secretKey) return NextResponse.json({ error: "Payment not configured" }, { status: 500 });
@@ -21,7 +24,7 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify({
         email,
-        amount: 5000, // NGN 50 in kobo
+        amount: amount * 100, // NGN to kobo
         currency: "NGN",
         callback_url: callbackUrl,
         metadata: {

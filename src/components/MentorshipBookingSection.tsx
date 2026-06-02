@@ -13,6 +13,7 @@ interface FormData {
 export default function MentorshipBookingSection() {
   const [step, setStep] = useState(1);
   const [form, setForm] = useState<FormData>({ name: "", email: "", phone: "", date: "", time: "", notes: "" });
+  const [amount, setAmount] = useState(30000);
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState("");
 
@@ -51,7 +52,7 @@ export default function MentorshipBookingSection() {
       const res = await fetch("/api/init-payment", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, amount }),
       });
       const data = await res.json();
 
@@ -97,6 +98,27 @@ export default function MentorshipBookingSection() {
             <div className="space-y-6">
               <div><h3 className="text-2xl font-medium font-serif italic text-gray-900 mb-2">Your Details</h3><p className="text-gray-500 font-light text-sm">Tell us who you are so we can prepare for your session.</p></div>
               <div className="space-y-4">
+                <div className="space-y-1.5">
+                  <label className="text-xs font-black uppercase tracking-widest text-gray-400 flex items-center gap-2">Choose Session Type</label>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <button 
+                      type="button"
+                      onClick={() => setAmount(25000)}
+                      className={`p-4 rounded-2xl border transition-all text-left ${amount === 25000 ? "border-primary-900 bg-primary-50/50 ring-2 ring-primary-900/10" : "border-gray-100 bg-gray-50/50 hover:border-gray-200"}`}
+                    >
+                      <p className="font-bold text-gray-900">Single Session</p>
+                      <p className="text-xs text-gray-500">90 minutes • ₦25,000</p>
+                    </button>
+                    <button 
+                      type="button"
+                      onClick={() => setAmount(50000)}
+                      className={`p-4 rounded-2xl border transition-all text-left ${amount === 50000 ? "border-primary-900 bg-primary-50/50 ring-2 ring-primary-900/10" : "border-gray-100 bg-gray-50/50 hover:border-gray-200"}`}
+                    >
+                      <p className="font-bold text-gray-900">Multiple Sessions</p>
+                      <p className="text-xs text-gray-500">Extended Guidance • ₦50,000</p>
+                    </button>
+                  </div>
+                </div>
                 {[
                   { field: "name" as const, label: "Full Name", icon: <User className="w-3.5 h-3.5" />, type: "text", placeholder: "Joseph Adeniran" },
                   { field: "email" as const, label: "Email Address", icon: <Mail className="w-3.5 h-3.5" />, type: "email", placeholder: "Nexleadershipcommunity@gmail.com" },
@@ -130,8 +152,9 @@ export default function MentorshipBookingSection() {
                 <div className="flex items-center gap-3 mb-4"><CalendarCheck className="w-5 h-5 text-primary-300" /><span className="font-black uppercase text-xs tracking-widest text-primary-300">Session Summary</span></div>
                 <div className="flex justify-between text-sm"><span className="text-white/60">Name</span><span className="font-semibold">{form.name}</span></div>
                 <div className="flex justify-between text-sm"><span className="text-white/60">Date</span><span className="font-semibold">{formatDate(form.date)}</span></div>
-                <div className="flex justify-between text-sm"><span className="text-white/60">Time</span><span className="font-semibold">{form.time} WAT</span></div>
-                <div className="pt-3 border-t border-white/10 flex justify-between"><span className="text-white/60">Booking Fee</span><span className="font-black text-primary-300 text-lg">₦50.00</span></div>
+                 <div className="flex justify-between text-sm"><span className="text-white/60">Time</span><span className="font-semibold">{form.time} WAT</span></div>
+                <div className="flex justify-between text-sm"><span className="text-white/60">Duration</span><span className="font-semibold">{amount === 25000 ? "90 Minutes" : "Flexible"}</span></div>
+                <div className="pt-3 border-t border-white/10 flex justify-between"><span className="text-white/60">Session Fee</span><span className="font-black text-primary-300 text-lg">₦{amount.toLocaleString()}.00</span></div>
               </div>
 
               <div className="space-y-1.5">
@@ -142,7 +165,7 @@ export default function MentorshipBookingSection() {
               </div>
 
               <p className="text-xs text-gray-400 flex items-center gap-2">
-                🔒 You will be redirected to Paystack&apos;s secure checkout to complete your ₦50 payment.
+                🔒 You will be redirected to Paystack&apos;s secure checkout to complete your ₦{amount.toLocaleString()} payment.
               </p>
             </div>
           )}
@@ -173,7 +196,7 @@ export default function MentorshipBookingSection() {
             className="flex items-center gap-2 px-8 py-4 rounded-full bg-primary-900 text-white font-black text-xs uppercase tracking-widest hover:bg-black transition-all shadow-xl active:scale-95 disabled:opacity-60 disabled:cursor-not-allowed">
             {isProcessing
               ? <><Loader2 className="w-4 h-4 animate-spin" /> Redirecting to Paystack...</>
-              : <>Pay ₦50 &amp; Confirm <ArrowRight className="w-4 h-4" /></>}
+              : <>Pay ₦{amount.toLocaleString()} &amp; Confirm <ArrowRight className="w-4 h-4" /></>}
           </button>
         )}
       </div>
