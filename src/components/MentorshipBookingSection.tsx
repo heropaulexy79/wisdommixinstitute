@@ -115,7 +115,7 @@ export default function MentorshipBookingSection() {
                       className={`p-4 rounded-2xl border transition-all text-left ${amount === 50000 ? "border-primary-900 bg-primary-50/50 ring-2 ring-primary-900/10" : "border-gray-100 bg-gray-50/50 hover:border-gray-200"}`}
                     >
                       <p className="font-bold text-gray-900">Two Sessions</p>
-                      <p className="text-xs text-gray-500">180 mins • Same Day • ₦50,000</p>
+                      <p className="text-xs text-gray-500">180 mins • ₦50,000</p>
                     </button>
                   </div>
                 </div>
