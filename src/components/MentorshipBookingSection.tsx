@@ -115,7 +115,7 @@ export default function MentorshipBookingSection() {
                       className={`p-4 rounded-2xl border transition-all text-left ${amount === 50000 ? "border-primary-900 bg-primary-50/50 ring-2 ring-primary-900/10" : "border-gray-100 bg-gray-50/50 hover:border-gray-200"}`}
                     >
                       <p className="font-bold text-gray-900">Two Sessions</p>
-                      <p className="text-xs text-gray-500">Intensive Guidance • ₦50,000</p>
+                      <p className="text-xs text-gray-500">180 mins • Same Day • ₦50,000</p>
                     </button>
                   </div>
                 </div>
@@ -153,7 +153,7 @@ export default function MentorshipBookingSection() {
                 <div className="flex justify-between text-sm"><span className="text-white/60">Name</span><span className="font-semibold">{form.name}</span></div>
                 <div className="flex justify-between text-sm"><span className="text-white/60">Date</span><span className="font-semibold">{formatDate(form.date)}</span></div>
                  <div className="flex justify-between text-sm"><span className="text-white/60">Time</span><span className="font-semibold">{form.time} WAT</span></div>
-                <div className="flex justify-between text-sm"><span className="text-white/60">Duration</span><span className="font-semibold">{amount === 30000 ? "90 Minutes" : "180 Minutes (2 Sessions)"}</span></div>
+                <div className="flex justify-between text-sm"><span className="text-white/60">Duration</span><span className="font-semibold">{amount === 30000 ? "90 Minutes" : "180 Minutes (Same Day)"}</span></div>
                 <div className="pt-3 border-t border-white/10 flex justify-between"><span className="text-white/60">Session Fee</span><span className="font-black text-primary-300 text-lg">₦{amount.toLocaleString()}.00</span></div>
               </div>
 
