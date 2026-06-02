@@ -7,13 +7,16 @@ import BookingCalendar from "./BookingCalendar";
 
 interface FormData {
   name: string; email: string; phone: string;
-  date: string; time: string; notes: string;
+  date: string; time: string; 
+  date2: string; time2: string;
+  notes: string;
 }
 
 export default function MentorshipBookingSection() {
   const [step, setStep] = useState(1);
-  const [form, setForm] = useState<FormData>({ name: "", email: "", phone: "", date: "", time: "", notes: "" });
+  const [form, setForm] = useState<FormData>({ name: "", email: "", phone: "", date: "", time: "", date2: "", time2: "", notes: "" });
   const [amount, setAmount] = useState(30000);
+  const [activeSessionTab, setActiveSessionTab] = useState(1);
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState("");
 
@@ -26,8 +29,13 @@ export default function MentorshipBookingSection() {
     return "";
   };
   const validateStep2 = () => {
-    if (!form.date) return "Please select a date.";
-    if (!form.time) return "Please select a time slot.";
+    if (!form.date) return "Please select a date for Session 1.";
+    if (!form.time) return "Please select a time slot for Session 1.";
+    if (amount === 50000) {
+      if (!form.date2) return "Please select a date for Session 2.";
+      if (!form.time2) return "Please select a time slot for Session 2.";
+      if (form.date === form.date2 && form.time === form.time2) return "Please select different slots for each session.";
+    }
     return "";
   };
 
@@ -137,8 +145,49 @@ export default function MentorshipBookingSection() {
           {/* STEP 2 */}
           {step === 2 && (
             <div className="space-y-6">
-              <div><h3 className="text-2xl font-medium font-serif italic text-gray-900 mb-2">Pick a Session Slot</h3><p className="text-gray-500 font-light text-sm">Choose your preferred date and time. Booked slots are grayed out.</p></div>
-              <BookingCalendar selectedDate={form.date} selectedTime={form.time} onDateChange={d => update("date", d)} onTimeChange={t => update("time", t)} />
+              <div>
+                <h3 className="text-2xl font-medium font-serif italic text-gray-900 mb-2">Pick your Slot(s)</h3>
+                <p className="text-gray-500 font-light text-sm">
+                  {amount === 50000 
+                    ? "You've selected the Two Sessions package. Please pick a slot for each session." 
+                    : "Choose your preferred date and time. Booked slots are grayed out."}
+                </p>
+              </div>
+
+              {amount === 50000 && (
+                <div className="flex gap-2 p-1 bg-gray-100 rounded-2xl w-fit mb-6">
+                  <button 
+                    type="button"
+                    onClick={() => setActiveSessionTab(1)}
+                    className={`px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeSessionTab === 1 ? "bg-white text-primary-900 shadow-sm" : "text-gray-400 hover:text-gray-600"}`}
+                  >
+                    Session 1
+                  </button>
+                  <button 
+                    type="button"
+                    onClick={() => setActiveSessionTab(2)}
+                    className={`px-6 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all ${activeSessionTab === 2 ? "bg-white text-primary-900 shadow-sm" : "text-gray-400 hover:text-gray-600"}`}
+                  >
+                    Session 2
+                  </button>
+                </div>
+              )}
+
+              {activeSessionTab === 1 ? (
+                <BookingCalendar 
+                  selectedDate={form.date} 
+                  selectedTime={form.time} 
+                  onDateChange={d => update("date", d)} 
+                  onTimeChange={t => update("time", t)} 
+                />
+              ) : (
+                <BookingCalendar 
+                  selectedDate={form.date2} 
+                  selectedTime={form.time2} 
+                  onDateChange={d => update("date2", d)} 
+                  onTimeChange={t => update("time2", t)} 
+                />
+              )}
             </div>
           )}
 
@@ -150,11 +199,25 @@ export default function MentorshipBookingSection() {
               <div className="bg-[#051a14] rounded-[1.5rem] p-6 text-white space-y-3 relative overflow-hidden">
                 <div className="absolute -top-6 -right-6 w-24 h-24 bg-primary-400/10 rounded-full blur-2xl" />
                 <div className="flex items-center gap-3 mb-4"><CalendarCheck className="w-5 h-5 text-primary-300" /><span className="font-black uppercase text-xs tracking-widest text-primary-300">Session Summary</span></div>
-                <div className="flex justify-between text-sm"><span className="text-white/60">Name</span><span className="font-semibold">{form.name}</span></div>
-                <div className="flex justify-between text-sm"><span className="text-white/60">Date</span><span className="font-semibold">{formatDate(form.date)}</span></div>
-                 <div className="flex justify-between text-sm"><span className="text-white/60">Time</span><span className="font-semibold">{form.time} WAT</span></div>
-                <div className="flex justify-between text-sm"><span className="text-white/60">Duration</span><span className="font-semibold">{amount === 30000 ? "90 Minutes" : "180 Minutes (Same Day)"}</span></div>
-                <div className="pt-3 border-t border-white/10 flex justify-between"><span className="text-white/60">Session Fee</span><span className="font-black text-primary-300 text-lg">₦{amount.toLocaleString()}.00</span></div>
+                <div className="flex justify-between text-sm mb-4"><span className="text-white/60">Name</span><span className="font-semibold">{form.name}</span></div>
+                
+                <div className="space-y-4">
+                  <div className="p-5 rounded-2xl bg-white/5 border border-white/10 group">
+                    <p className="text-[10px] uppercase tracking-widest text-primary-300 font-black mb-3">{amount === 50000 ? "Session 1" : "Session Details"}</p>
+                    <div className="flex justify-between text-sm mb-2"><span className="text-white/60">Date</span><span className="font-semibold">{formatDate(form.date)}</span></div>
+                    <div className="flex justify-between text-sm"><span className="text-white/60">Time</span><span className="font-semibold">{form.time} WAT</span></div>
+                  </div>
+
+                  {amount === 50000 && (
+                    <div className="p-5 rounded-2xl bg-white/5 border border-white/10 group">
+                      <p className="text-[10px] uppercase tracking-widest text-primary-300 font-black mb-3">Session 2</p>
+                      <div className="flex justify-between text-sm mb-2"><span className="text-white/60">Date</span><span className="font-semibold">{formatDate(form.date2)}</span></div>
+                      <div className="flex justify-between text-sm"><span className="text-white/60">Time</span><span className="font-semibold">{form.time2} WAT</span></div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="pt-5 mt-2 border-t border-white/10 flex justify-between"><span className="text-white/60">Total Fee</span><span className="font-black text-primary-300 text-lg">₦{amount.toLocaleString()}.00</span></div>
               </div>
 
               <div className="space-y-1.5">

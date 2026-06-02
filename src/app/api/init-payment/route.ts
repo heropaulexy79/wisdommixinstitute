@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { email, name, phone, date, time, amount } = body;
+    const { email, name, phone, date, time, amount, date2, time2 } = body;
 
     if (!email) return NextResponse.json({ error: "Email required" }, { status: 400 });
     if (!amount || (amount !== 30000 && amount !== 50000)) {
@@ -15,6 +15,20 @@ export async function POST(req: NextRequest) {
 
     const origin = req.headers.get("origin") || "http://localhost:3000";
     const callbackUrl = `${origin}/mentorship/booking-success`;
+
+    const customFields = [
+      { display_name: "Name", variable_name: "name", value: name },
+      { display_name: "Phone", variable_name: "phone", value: phone },
+      { display_name: "Session 1 Date", variable_name: "date", value: date },
+      { display_name: "Session 1 Time", variable_name: "time", value: time },
+    ];
+
+    if (amount === 50000 && date2 && time2) {
+      customFields.push(
+        { display_name: "Session 2 Date", variable_name: "date2", value: date2 },
+        { display_name: "Session 2 Time", variable_name: "time2", value: time2 }
+      );
+    }
 
     const res = await fetch("https://api.paystack.co/transaction/initialize", {
       method: "POST",
@@ -28,12 +42,7 @@ export async function POST(req: NextRequest) {
         currency: "NGN",
         callback_url: callbackUrl,
         metadata: {
-          custom_fields: [
-            { display_name: "Name", variable_name: "name", value: name },
-            { display_name: "Phone", variable_name: "phone", value: phone },
-            { display_name: "Session Date", variable_name: "date", value: date },
-            { display_name: "Session Time", variable_name: "time", value: time },
-          ],
+          custom_fields: customFields,
         },
       }),
     });
