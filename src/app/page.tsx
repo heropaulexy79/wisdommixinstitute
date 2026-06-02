@@ -234,6 +234,70 @@ export default function Home() {
         </div>
       </SectionWrapper>
 
+      {/* 7. KNOWLEDGE VAULT (Books Section) */}
+      <SectionWrapper id="books-preview" className="bg-[#051a14] relative overflow-hidden text-white">
+        <div className="absolute top-0 left-0 w-[40%] h-[40%] bg-primary-900/30 rounded-full blur-[120px] -ml-20 -mt-20"></div>
+        
+        <div className="flex flex-col lg:flex-row items-end justify-between mb-16 relative z-10 gap-8">
+          <div className="max-w-2xl text-left">
+            <span className="text-primary-300 font-bold tracking-[0.3em] uppercase text-xs mb-6 block">Resource Library</span>
+            <h2 className="text-4xl md:text-6xl font-medium text-white mb-8 font-serif italic leading-tight">The Knowledge Vault</h2>
+            <p className="text-xl text-primary-100/70 font-light leading-relaxed">
+              Equip yourself with life-transforming wisdom through our curated collection of books and resources.
+            </p>
+          </div>
+          <Link 
+            href="/books" 
+            className="px-8 py-4 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-black uppercase text-xs tracking-widest hover:bg-white hover:text-primary-900 transition-all group"
+          >
+            Explore Library
+            <ArrowRight className="ml-3 w-4 h-4 inline transform group-hover:translate-x-2 transition-transform" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+          {[
+            {
+              title: "Kingdom Power and Blessing",
+              image: "/KINGDOM, POWER AND BLESSING.jpeg",
+              tag: "Digital Book"
+            },
+            {
+              title: "The Leading Mind",
+              image: "/THE LEADING MIND.jpeg",
+              tag: "Digital Book"
+            },
+            {
+              title: "One of a Kind",
+              image: "/ONE OF A KIND2.jpeg",
+              tag: "Digital Book"
+            },
+            {
+              title: "The Rod of Strength",
+              image: "/THE ROD OF STRENGTH.jpeg",
+              tag: "Digital Book"
+            }
+          ].map((book, idx) => (
+            <Link key={idx} href="/books" className="group text-left">
+              <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-6 bg-white/5 border border-white/10 group-hover:border-primary-400 transition-all duration-500 shadow-2xl">
+                <img 
+                  src={book.image} 
+                  alt={book.title}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#051a14] via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity" />
+                <div className="absolute bottom-6 left-6">
+                  <span className="px-3 py-1 rounded-full bg-primary-400 text-[#051a14] text-[10px] font-black uppercase tracking-wider mb-2 inline-block">
+                    {book.tag}
+                  </span>
+                </div>
+              </div>
+              <h3 className="text-white font-medium group-hover:text-primary-300 transition-colors">{book.title}</h3>
+            </Link>
+          ))}
+        </div>
+      </SectionWrapper>
+
       {/* 8. FINAL CTA */}
       <CTASection />
     </>
