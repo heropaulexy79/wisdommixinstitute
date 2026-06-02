@@ -6,7 +6,7 @@ export async function POST(req: NextRequest) {
     const { email, name, phone, date, time, amount } = body;
 
     if (!email) return NextResponse.json({ error: "Email required" }, { status: 400 });
-    if (!amount || (amount !== 25000 && amount !== 50000)) {
+    if (!amount || (amount !== 30000 && amount !== 50000)) {
       return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
     }
 
