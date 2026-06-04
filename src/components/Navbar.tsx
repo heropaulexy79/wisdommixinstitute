@@ -11,7 +11,6 @@ const navLinks = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
   { name: "Programs", href: "/programs" },
-  { name: "Inner Circle", href: "/inner-circle" },
   { name: "Mentorship", href: "/mentorship" },
   { name: "Events", href: "/events" },
   { name: "Books", href: "/books" },
