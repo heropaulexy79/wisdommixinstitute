@@ -34,7 +34,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-8 font-serif leading-tight">
               A Proven System for <br/><span className="italic text-primary-900">Total Transformation</span>
             </h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed font-light">
+            <p className="text-base text-gray-600 mb-8 leading-relaxed font-light">
               At NexLeadership Community, we believe true leadership begins from within. Our unique transformational system is designed to break limitations, renew mindsets, and equip individuals with the spiritual and mental fortitude needed to lead effectively.
             </p>
             <ul className="space-y-6 mb-10">
@@ -101,7 +101,7 @@ export default function Home() {
           <span className="text-primary-300 font-bold tracking-[0.3em] uppercase text-xs mb-6 block">The Foundation</span>
           <h2 className="text-4xl md:text-6xl lg:text-7xl font-medium text-white mb-10 font-serif italic leading-tight">Our Core Pillars</h2>
           <div className="w-24 h-1 bg-gradient-to-r from-transparent via-primary-400 to-transparent mx-auto mb-10" />
-          <p className="text-xl text-primary-100/70 font-light max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-primary-100/70 font-light max-w-2xl mx-auto leading-relaxed">
             The bedrock of our transformational system, meticulously designed to forge exceptional leaders of character and impact.
           </p>
         </div>
@@ -158,7 +158,7 @@ export default function Home() {
           <div className="relative p-12 md:p-24 lg:p-32 text-center max-w-5xl mx-auto flex flex-col items-center">
             <span className="text-primary-300 font-black tracking-[0.3em] uppercase text-xs mb-6 block">Structured Growth</span>
             <h2 className="text-4xl md:text-6xl lg:text-8xl font-medium text-white mb-10 font-serif italic leading-tight">Comprehensive Education</h2>
-            <p className="text-xl text-primary-100/70 mb-12 leading-relaxed max-w-3xl font-light">
+            <p className="text-lg text-primary-100/70 mb-12 leading-relaxed max-w-3xl font-light">
               Whether you are looking to refine your leadership skills, understand your spiritual identity, or receive personalized guidance, our curated programs are tailored for your elevation.
             </p>
             <Link 
@@ -242,7 +242,7 @@ export default function Home() {
           <div className="max-w-2xl text-left">
             <span className="text-primary-300 font-bold tracking-[0.3em] uppercase text-xs mb-6 block">Resource Library</span>
             <h2 className="text-4xl md:text-6xl font-medium text-white mb-8 font-serif italic leading-tight">The Knowledge Vault</h2>
-            <p className="text-xl text-primary-100/70 font-light leading-relaxed">
+            <p className="text-lg text-primary-100/70 font-light leading-relaxed">
               Equip yourself with life-transforming wisdom through our curated collection of books and resources.
             </p>
           </div>

@@ -50,7 +50,7 @@ export default function RecentEvents() {
           <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-6 font-serif italic">
             Upcoming Events
           </h2>
-          <p className="text-gray-500 text-lg font-light leading-relaxed">
+          <p className="text-gray-500 text-base font-light leading-relaxed">
             Join us at our upcoming life-transforming sessions, seminars, and training programs designed for your total growth.
           </p>
         </div>

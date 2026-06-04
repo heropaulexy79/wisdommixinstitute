@@ -175,7 +175,7 @@ export default function BooksPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl md:text-2xl text-primary-100/80 max-w-3xl mx-auto leading-relaxed font-light"
+            className="text-lg md:text-2xl text-primary-100/80 max-w-3xl mx-auto leading-relaxed font-light"
           >
             Equip yourself with the wisdom and strategies needed to lead effectively in the 21st century.
           </motion.p>

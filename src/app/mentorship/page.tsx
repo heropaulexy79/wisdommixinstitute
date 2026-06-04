@@ -27,7 +27,7 @@ export default function MentorshipPage() {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-10 tracking-tight max-w-5xl mx-auto font-serif italic leading-[1.1]">
             1-on-1 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">Mentorship</span>
           </h1>
-          <p className="text-xl md:text-2xl text-primary-100/80 max-w-4xl mx-auto leading-relaxed font-light mb-12">
+          <p className="text-lg md:text-2xl text-primary-100/80 max-w-4xl mx-auto leading-relaxed font-light mb-12">
             Personalized guidance, rigorous accountability, and customized strategies to help you break through invisible ceilings and maximize your potential.
           </p>
           <Link
@@ -46,7 +46,7 @@ export default function MentorshipPage() {
           <div>
             <span className="text-primary-900 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Tailored for Leaders</span>
             <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-8 font-serif italic">Who is this for?</h2>
-            <p className="text-lg text-gray-500 mb-10 leading-relaxed font-light">
+            <p className="text-base text-gray-500 mb-10 leading-relaxed font-light">
               Our mentorship program is not for everyone. It is meticulously designed for high-capacity individuals who are hungry for growth, willing to be challenged, and ready to execute at the highest level.
             </p>
             <ul className="space-y-6">
@@ -104,7 +104,7 @@ export default function MentorshipPage() {
               Book a <span className="text-primary-900">Session</span>
             </h2>
             <div className="w-16 h-1 bg-primary-900 mx-auto mb-6" />
-            <p className="text-lg text-gray-500 font-light leading-relaxed">
+            <p className="text-base text-gray-500 font-light leading-relaxed">
               Select your preferred date and time, complete your details, and secure your 90-minute session starting from ₦30,000.
             </p>
           </div>

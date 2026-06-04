@@ -49,7 +49,7 @@ export default function InnerCirclePage() {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-10 tracking-tight max-w-5xl mx-auto font-serif italic leading-[1.1]">
             The <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">Inner Circle</span>
           </h1>
-          <p className="text-xl md:text-2xl text-primary-100/80 max-w-4xl mx-auto leading-relaxed font-light mb-12">
+          <p className="text-lg md:text-2xl text-primary-100/80 max-w-4xl mx-auto leading-relaxed font-light mb-12">
             A private, deeply committed community of leaders actively shaping the future. Elevate your associations, elevate your life.
           </p>
           <Link
@@ -67,7 +67,7 @@ export default function InnerCirclePage() {
           <span className="text-primary-900 font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Proximity is Power</span>
           <h2 className="text-4xl md:text-6xl font-medium text-gray-900 mb-8 font-serif italic">Why the Inner Circle?</h2>
           <div className="w-20 h-1 bg-primary-900 mx-auto mb-8" />
-          <p className="text-xl text-gray-500 font-light leading-relaxed">
+          <p className="text-lg text-gray-500 font-light leading-relaxed">
             You are the average of the five people you spend the most time with. The Inner Circle provides an environment where your ambition is nurtured, your faith is strengthened, and your leadership capacity is exponentially increased through high-level associations.
           </p>
         </div>

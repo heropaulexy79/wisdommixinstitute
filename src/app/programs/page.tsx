@@ -83,7 +83,7 @@ export default function ProgramsPage() {
           <h1 className="text-5xl md:text-7xl font-medium text-white mb-8 tracking-tight font-serif italic leading-[1.1]">
             Transformational <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">Programs</span>
           </h1>
-          <p className="text-xl text-primary-100/80 max-w-3xl mx-auto font-light leading-relaxed">
+          <p className="text-lg text-primary-100/80 max-w-3xl mx-auto font-light leading-relaxed">
             Carefully curated tracks designed to push you beyond your limits and forge you into an exceptional leader of impact.
           </p>
         </div>
@@ -116,7 +116,7 @@ export default function ProgramsPage() {
                       <h2 className="text-4xl md:text-5xl font-medium text-gray-900 mb-8 font-serif italic leading-tight">
                         {program.title}
                       </h2>
-                      <p className="text-lg text-gray-500 mb-10 leading-relaxed font-light">
+                      <p className="text-base text-gray-500 mb-10 leading-relaxed font-light">
                         {program.description}
                       </p>
                       <Link 
