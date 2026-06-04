@@ -132,7 +132,7 @@ export default function HeroSlider() {
       </div>
 
       {/* Thumbnails Underneath */}
-      <div className="absolute bottom-6 md:bottom-10 left-0 right-0 z-20 px-4 sm:px-6 lg:px-8">
+      <div className="absolute bottom-6 md:bottom-4 left-0 right-0 z-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto flex items-end justify-between">
           <div className="flex space-x-3 md:space-x-4">
             {slides.map((slide, index) => (
