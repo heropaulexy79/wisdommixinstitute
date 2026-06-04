@@ -88,7 +88,7 @@ export default function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-16 pb-24 md:pb-56">
+      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-32 md:pt-48 pb-48 md:pb-56">
         <div className="max-w-3xl">
           <AnimatePresence mode="wait">
             <motion.div
@@ -102,7 +102,7 @@ export default function HeroSlider() {
                 <span className="flex h-2 w-2 rounded-full bg-primary-400 mr-3 animate-pulse" />
                 {slides[currentSlide].tagline}
               </div>
-              <h1 className="text-3xl md:text-5xl lg:text-7xl font-medium text-white tracking-tight mb-8 text-balance font-serif italic leading-[1.1]">
+              <h1 className="text-2xl md:text-5xl lg:text-7xl font-medium text-white tracking-tight mb-8 text-balance font-serif italic leading-[1.1]">
                 {slides[currentSlide].title}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 block md:inline not-italic font-sans font-black uppercase tracking-tighter">
                   {slides[currentSlide].highlight}

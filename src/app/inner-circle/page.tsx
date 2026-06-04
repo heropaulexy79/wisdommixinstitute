@@ -46,7 +46,7 @@ export default function InnerCirclePage() {
           <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white font-black uppercase text-xs tracking-[0.2em] mb-8">
             Exclusive Network
           </span>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-10 tracking-tight max-w-5xl mx-auto font-serif italic leading-[1.1]">
+          <h1 className="text-4xl md:text-7xl lg:text-8xl font-medium text-white mb-10 tracking-tight max-w-5xl mx-auto font-serif italic leading-[1.1]">
             The <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">Inner Circle</span>
           </h1>
           <p className="text-lg md:text-2xl text-primary-100/80 max-w-4xl mx-auto leading-relaxed font-light mb-12">
