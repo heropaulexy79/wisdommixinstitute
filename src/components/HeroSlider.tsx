@@ -88,7 +88,7 @@ export default function HeroSlider() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-32 md:pt-48 pb-48 md:pb-56">
+      <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-center pt-32 md:pt-48 pb-48 md:pb-[280px]">
         <div className="max-w-3xl">
           <AnimatePresence mode="wait">
             <motion.div
