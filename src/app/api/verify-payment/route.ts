@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { MENTORSHIP_PRICES } from "@/lib/products";
 
 export async function POST(req: NextRequest) {
   try {
@@ -28,18 +29,28 @@ export async function POST(req: NextRequest) {
     const verifyData = await verifyRes.json();
 
     if (!verifyData.status || verifyData.data?.status !== "success") {
+      console.error(`Payment verification failed for ref: ${reference}`);
       return NextResponse.json({ error: "Payment verification failed" }, { status: 400 });
     }
 
-    // Check the amount paid is correct (NGN 50 = 5000 kobo)
-    if (verifyData.data.amount < 5000) {
+    const paidAmount = verifyData.data.amount; // in kobo
+    const expectedPrices = [
+      MENTORSHIP_PRICES.SINGLE_SESSION * 100,
+      MENTORSHIP_PRICES.DOUBLE_SESSION * 100
+    ];
+
+    // Check the amount paid is exactly one of the valid prices
+    if (!expectedPrices.includes(paidAmount)) {
+      console.warn(`Suspicious payment amount: ${paidAmount} kobo for ref: ${reference}`);
       return NextResponse.json({ error: "Incorrect payment amount" }, { status: 400 });
     }
 
-    // Return verified amount and transaction details to the client
+    console.log(`Payment successful for ref: ${reference}`);
+
+    // Return transaction details to the client (sanitized)
     return NextResponse.json({
       success: true,
-      amount: verifyData.data.amount,
+      amount: paidAmount,
       paidAt: verifyData.data.paid_at,
     });
   } catch (error) {

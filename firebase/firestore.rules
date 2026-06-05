@@ -11,14 +11,23 @@ service cloud.firestore {
 
     // Bookings — anyone can create, no one can read/edit from client
     match /bookings/{booking} {
-      allow create: if true;
-      allow read, update, delete: if false; // Admin only via console
+      allow create: if request.resource.data.email != null && 
+                      request.resource.data.name != null &&
+                      request.resource.data.email.size() < 100;
+      allow read, update, delete: if false; 
     }
 
     // Contact messages — anyone can create
     match /contact_messages/{msg} {
-      allow create: if true;
+      allow create: if request.resource.data.email != null && 
+                      request.resource.data.message != null &&
+                      request.resource.data.message.size() < 1000;
       allow read, update, delete: if false;
+    }
+
+    // Book Purchases - Backend only (Rules apply to client SDKs)
+    match /book_purchases/{purchase} {
+      allow read, write: if false; // Deny all client access
     }
 
     // Default deny everything else

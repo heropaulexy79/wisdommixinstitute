@@ -13,8 +13,8 @@ export async function POST(req: NextRequest) {
     const secretKey = process.env.PAYSTACK_SECRET_KEY;
     if (!secretKey) return NextResponse.json({ error: "Payment not configured" }, { status: 500 });
 
-    const origin = req.headers.get("origin") || "http://localhost:3000";
-    const callbackUrl = `${origin}/mentorship/booking-success`;
+    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://wisdommixinstitute.com"; 
+    const callbackUrl = `${appUrl}/mentorship/booking-success`;
 
     const customFields = [
       { display_name: "Name", variable_name: "name", value: name },

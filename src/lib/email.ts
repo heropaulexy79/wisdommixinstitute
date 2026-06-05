@@ -21,9 +21,6 @@ export async function sendBookEmail(to: string, bookTitle: string, downloadUrl: 
   }
 
 
-  console.log(`Sending email via SMTP (${smtpEmail}) to ${to}...`);
-
-
   const mailOptions = {
     from: `"${fromName}" <${smtpEmail}>`,
     to: to,

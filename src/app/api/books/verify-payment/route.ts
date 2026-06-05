@@ -2,13 +2,12 @@ import { NextRequest, NextResponse } from "next/server";
 import { sendBookEmail } from "@/lib/email";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { BOOKS } from "@/lib/products";
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const { reference } = body;
-    console.log("Verifying payment for reference:", reference);
-
 
     if (!reference) {
       return NextResponse.json({ error: "Missing payment reference" }, { status: 400 });
@@ -33,15 +32,12 @@ export async function POST(req: NextRequest) {
     const verifyData = await verifyRes.json();
 
     if (!verifyData.status || verifyData.data?.status !== "success") {
-      console.error("Paystack verification failed or status not success:", verifyData);
+      console.error(`Paystack verification failed for ref: ${reference}`);
       return NextResponse.json({ error: "Payment verification failed" }, { status: 400 });
     }
 
-    console.log("Paystack verification successful. Data:", verifyData.data);
-
-
-    // Extract metadata
-    const { customer, metadata } = verifyData.data;
+    // Extract metadata and customer info
+    const { customer, metadata, amount: paidAmount } = verifyData.data;
     const customerEmail = customer.email;
     const customerName = metadata?.custom_fields?.find((f: any) => f.variable_name === "name")?.value || customer?.first_name || "Valued Customer";
     const customerPhone = metadata?.custom_fields?.find((f: any) => f.variable_name === "phone")?.value || "";
@@ -62,16 +58,30 @@ export async function POST(req: NextRequest) {
       if (bookId) cartItems.push({ id: bookId, title: bookTitle });
     }
 
+    // VALIDATION: Calculate expected total price
+    let expectedTotal = 0;
+    for (const item of cartItems) {
+      const book = BOOKS.find(b => b.id === item.id);
+      if (book) {
+        expectedTotal += book.price;
+      } else {
+        console.warn(`Unknown book ID in cart: ${item.id} for ref: ${reference}`);
+        return NextResponse.json({ error: "Invalid item in cart" }, { status: 400 });
+      }
+    }
+
+    if (paidAmount < expectedTotal * 100) {
+      console.error(`PRICE MANIPULATION DETECTED: Paid ${paidAmount} kobo, expected ${expectedTotal * 100} kobo for ref: ${reference}`);
+      return NextResponse.json({ error: "Incorrect payment amount" }, { status: 400 });
+    }
+
     const results = [];
     for (const item of cartItems) {
       const { id: bookId, title: bookTitle } = item;
       const downloadUrl = `${req.nextUrl.origin}/api/books/download?id=${bookId}&ref=${reference}`;
 
-      console.log(`Attempting to send email to ${customerEmail} for book "${bookTitle}" with URL: ${downloadUrl}`);
       // 1. Send Email
       const emailSent = await sendBookEmail(customerEmail, bookTitle, downloadUrl);
-      console.log(`Email sent status for "${bookTitle}":`, emailSent);
-
 
       // 2. Log purchase to Firestore
       try {
@@ -82,7 +92,7 @@ export async function POST(req: NextRequest) {
           bookId,
           bookTitle,
           reference,
-          amount: verifyData.data.amount / 100 / cartItems.length,
+          amount: paidAmount / 100 / cartItems.length,
           status: "success",
           emailSent,
           createdAt: serverTimestamp(),
@@ -93,6 +103,8 @@ export async function POST(req: NextRequest) {
 
       results.push({ bookTitle, downloadUrl, emailSent });
     }
+
+    console.log(`Successfully processed purchase for ref: ${reference}`);
 
     return NextResponse.json({
       success: true,
