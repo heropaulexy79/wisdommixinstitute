@@ -6,13 +6,13 @@ export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const bookId = searchParams.get("id");
   const reference = searchParams.get("ref");
+  const deviceToken = searchParams.get("token");
 
-  if (!bookId || !reference) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!bookId || !reference || !deviceToken) {
+    return new NextResponse("Unauthorized", { status: 401 });
   }
 
   try {
-    // VERIFICATION: Check if a successful purchase exists for this book and reference
     const purchasesRef = collection(db, "book_purchases");
     const q = query(
       purchasesRef, 
@@ -24,8 +24,14 @@ export async function GET(req: NextRequest) {
     const querySnapshot = await getDocs(q);
     
     if (querySnapshot.empty) {
-      console.warn(`Unauthorized download attempt for book ${bookId} with ref ${reference}`);
-      return NextResponse.json({ error: "Invalid or unverified purchase" }, { status: 403 });
+      return new NextResponse("Invalid purchase", { status: 403 });
+    }
+
+    const purchaseData = querySnapshot.docs[0].data();
+
+    // Verify token matches what's in the DB
+    if (purchaseData.deviceToken !== deviceToken) {
+      return new NextResponse("Unauthorized device", { status: 403 });
     }
 
     // Map bookId to specific PDF URLs from environment variables
@@ -38,13 +44,29 @@ export async function GET(req: NextRequest) {
 
     const pdfUrl = bookPdfs[bookId] || process.env.NEXT_PUBLIC_SAMPLE_BOOK_URL || "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf";
 
-    // Prevent Referer leakage of the Paystack reference to the storage provider
-    const response = NextResponse.redirect(pdfUrl);
-    response.headers.set('Referrer-Policy', 'no-referrer');
+    // Fetch the PDF from the external source
+    const pdfResponse = await fetch(pdfUrl);
     
-    return response;
+    if (!pdfResponse.ok) {
+      throw new Error(`Failed to fetch PDF: ${pdfResponse.statusText}`);
+    }
+
+    const arrayBuffer = await pdfResponse.arrayBuffer();
+
+    // Serve the PDF as a buffer with appropriate headers
+    return new NextResponse(arrayBuffer, {
+      status: 200,
+      headers: {
+        "Content-Type": "application/pdf",
+        "Content-Disposition": "inline; filename=book.pdf",
+        "Cache-Control": "no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0",
+      },
+    });
+
   } catch (error) {
-    console.error("Download verification error:", error);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    console.error("PDF proxy error:", error);
+    return new NextResponse("Internal server error", { status: 500 });
   }
 }

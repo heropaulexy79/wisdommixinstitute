@@ -78,10 +78,10 @@ export async function POST(req: NextRequest) {
     const results = [];
     for (const item of cartItems) {
       const { id: bookId, title: bookTitle } = item;
-      const downloadUrl = `${req.nextUrl.origin}/api/books/download?id=${bookId}&ref=${reference}`;
+      const readUrl = `${req.nextUrl.origin}/books/read?id=${bookId}&ref=${reference}`;
 
       // 1. Send Email
-      const emailSent = await sendBookEmail(customerEmail, bookTitle, downloadUrl);
+      const emailSent = await sendBookEmail(customerEmail, bookTitle, readUrl);
 
       // 2. Log purchase to Firestore
       try {
@@ -101,7 +101,7 @@ export async function POST(req: NextRequest) {
         console.error("Firestore logging error:", e);
       }
 
-      results.push({ bookTitle, downloadUrl, emailSent });
+      results.push({ bookTitle, readUrl, emailSent });
     }
 
     console.log(`Successfully processed purchase for ref: ${reference}`);
@@ -110,7 +110,7 @@ export async function POST(req: NextRequest) {
       success: true,
       items: results,
       bookTitle: results.length > 0 ? results[0].bookTitle : "Your Books",
-      downloadUrl: results.length > 0 ? results[0].downloadUrl : "",
+      readUrl: results.length > 0 ? results[0].readUrl : "",
     });
   } catch (error) {
     console.error("Payment verification error:", error);
