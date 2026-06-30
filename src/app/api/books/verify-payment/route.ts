@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { sendBookEmail } from "@/lib/email";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { collection, setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { BOOKS } from "@/lib/products";
 
@@ -85,7 +85,7 @@ export async function POST(req: NextRequest) {
 
       // 2. Log purchase to Firestore
       try {
-        await addDoc(collection(db, "book_purchases"), {
+        await setDoc(doc(db, "book_purchases", `${reference}_${bookId}`), {
           email: customerEmail,
           name: customerName,
           phone: customerPhone,

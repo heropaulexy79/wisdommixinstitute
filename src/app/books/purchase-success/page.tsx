@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
-import { CheckCircle, XCircle, Loader2, ArrowLeft, Download, Mail } from "lucide-react";
+import { CheckCircle, XCircle, Loader2, ArrowLeft, Download, Mail, BookOpen } from "lucide-react";
 import Link from "next/link";
 
 type Status = "verifying" | "success" | "failed";
@@ -69,12 +69,12 @@ export default function PurchaseSuccessPage() {
               {purchaseData?.items?.map((item: any, index: number) => (
                 <div key={index} className="flex flex-col gap-2">
                   <a
-                    href={item.downloadUrl}
+                    href={item.readUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full inline-flex items-center justify-center gap-3 px-8 py-5 rounded-2xl bg-primary-900 text-white font-black text-xs uppercase tracking-widest hover:bg-black transition-all shadow-xl"
                   >
-                    <Download className="w-5 h-5" /> Download {item.bookTitle}
+                    <BookOpen className="w-5 h-5" /> Read {item.bookTitle}
                   </a>
                 </div>
               ))}

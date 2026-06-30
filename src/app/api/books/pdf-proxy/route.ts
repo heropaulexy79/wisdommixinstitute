@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { collection, query, where, getDocs, limit } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 export async function GET(req: NextRequest) {
@@ -13,21 +13,14 @@ export async function GET(req: NextRequest) {
   }
 
   try {
-    const purchasesRef = collection(db, "book_purchases");
-    const q = query(
-      purchasesRef, 
-      where("reference", "==", reference),
-      where("bookId", "==", bookId),
-      limit(1)
-    );
+    const purchaseRef = doc(db, "book_purchases", `${reference}_${bookId}`);
+    const docSnapshot = await getDoc(purchaseRef);
     
-    const querySnapshot = await getDocs(q);
-    
-    if (querySnapshot.empty) {
+    if (!docSnapshot.exists()) {
       return new NextResponse("Invalid purchase", { status: 403 });
     }
 
-    const purchaseData = querySnapshot.docs[0].data();
+    const purchaseData = docSnapshot.data();
 
     // Verify token matches what's in the DB
     if (purchaseData.deviceToken !== deviceToken) {

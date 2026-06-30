@@ -106,7 +106,7 @@ export default function PdfViewer() {
           <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
           <h2 className="text-2xl font-serif text-gray-900 mb-2">Access Denied</h2>
           <p className="text-gray-600 mb-6">{errorMessage}</p>
-          {accessStatus === "denied" && (
+          {accessStatus === "denied" && errorMessage.includes("registered") && (
             <p className="text-sm text-gray-500 bg-gray-50 p-4 rounded-lg">
               This book has been registered to another device or browser. To protect copyright, purchases are restricted to a single device.
             </p>

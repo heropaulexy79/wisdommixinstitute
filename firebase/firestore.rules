@@ -25,9 +25,10 @@ service cloud.firestore {
       allow read, update, delete: if false;
     }
 
-    // Book Purchases - Backend only (Rules apply to client SDKs)
-    match /book_purchases/{purchase} {
-      allow read, write: if false; // Deny all client access
+    // Book Purchases - specific access by ID
+    match /book_purchases/{purchaseId} {
+      allow get, create, update: if true;
+      allow list: if false; // Deny queries/listing to protect PII
     }
 
     // Default deny everything else

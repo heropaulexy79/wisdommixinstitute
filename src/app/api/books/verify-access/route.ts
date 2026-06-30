@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { collection, query, where, getDocs, limit, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
 export async function POST(req: NextRequest) {
@@ -11,21 +11,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required parameters" }, { status: 400 });
     }
 
-    const purchasesRef = collection(db, "book_purchases");
-    const q = query(
-      purchasesRef, 
-      where("reference", "==", reference),
-      where("bookId", "==", bookId),
-      limit(1)
-    );
+    const purchaseRef = doc(db, "book_purchases", `${reference}_${bookId}`);
+    const docSnapshot = await getDoc(purchaseRef);
     
-    const querySnapshot = await getDocs(q);
-    
-    if (querySnapshot.empty) {
+    if (!docSnapshot.exists()) {
       return NextResponse.json({ error: "Invalid purchase" }, { status: 403 });
     }
 
-    const docSnapshot = querySnapshot.docs[0];
     const purchaseData = docSnapshot.data();
 
     // Device lock logic
