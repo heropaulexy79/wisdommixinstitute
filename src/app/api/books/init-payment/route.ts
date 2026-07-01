@@ -14,7 +14,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Payment configuration error" }, { status: 500 });
     }
 
-    const appUrl = process.env.NEXT_PUBLIC_APP_URL || "https://nexleadershipcommunity.com";
+    const appUrl = req.nextUrl?.origin || process.env.NEXT_PUBLIC_APP_URL || "https://nexleadershipcommunity.com";
     const callbackUrl = `${appUrl}/books/purchase-success`;
 
     const res = await fetch("https://api.paystack.co/transaction/initialize", {

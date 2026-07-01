@@ -19,19 +19,33 @@ export default function RecentEvents() {
         const q = query(eventsRef, orderBy("date", "asc"), limit(3));
         const querySnapshot = await getDocs(q);
         
-        const fetchedEvents: EventData[] = [];
+        const fetchedEvents: EventData[] = [
+          {
+            id: "masterclass-2026",
+            title: "2-Month Transformational Masterclass",
+            description: "Join our comprehensive 2-month Masterclass designed to elevate your leadership skills and kingdom mindset. Over the course of 8 weeks, you'll receive intensive training, profound teachings, and actionable insights to transform your mind and life. Don't miss this opportunity to take your capacity to the next level!",
+            date: new Date("2026-07-20T10:00:00Z"),
+            dateString: "Monday July 20th - Monday September 14th",
+            location: "Online",
+            price: "NGN70,000 or $50",
+            image: "/2-MONTH MASTERCLASS PORTRAIT.png"
+          }
+        ];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           fetchedEvents.push({
             id: doc.id,
             title: data.title,
             description: data.description,
-            date: data.date?.toDate?.() || data.date, // handle Firestore timestamp or string
+            date: data.date?.toDate?.() || data.date,
+            dateString: data.dateString,
             location: data.location,
+            price: data.price,
+            image: data.image,
           } as EventData);
         });
         
-        setEvents(fetchedEvents);
+        setEvents(fetchedEvents.slice(0, 3));
       } catch (error) {
         console.error("Error fetching events:", error);
       } finally {

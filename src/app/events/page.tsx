@@ -20,7 +20,18 @@ export default function EventsPage() {
         const q = query(eventsRef, orderBy("date", "asc"));
         const querySnapshot = await getDocs(q);
         
-        const fetchedEvents: EventData[] = [];
+        const fetchedEvents: EventData[] = [
+          {
+            id: "masterclass-2026",
+            title: "2-Month Transformational Masterclass",
+            description: "Join our comprehensive 2-month Masterclass designed to elevate your leadership skills and kingdom mindset. Over the course of 8 weeks, you'll receive intensive training, profound teachings, and actionable insights to transform your mind and life. Don't miss this opportunity to take your capacity to the next level!",
+            date: new Date("2026-07-20T10:00:00Z"),
+            dateString: "Monday July 20th - Monday September 14th",
+            location: "Online",
+            price: "NGN70,000 or $50",
+            image: "/2-MONTH MASTERCLASS PORTRAIT.png"
+          }
+        ];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
           fetchedEvents.push({
@@ -28,7 +39,10 @@ export default function EventsPage() {
             title: data.title,
             description: data.description,
             date: data.date?.toDate?.() || data.date,
+            dateString: data.dateString,
             location: data.location,
+            price: data.price,
+            image: data.image,
           } as EventData);
         });
         
@@ -102,9 +116,11 @@ export default function EventsPage() {
                 <div className="lg:w-3/5 relative z-10 text-left">
                   <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 text-primary-300 font-bold uppercase text-[10px] tracking-widest mb-10 backdrop-blur-md">
                     <Calendar className="w-3 h-3 mr-3" />
-                    {new Date(featuredEvent.date).toLocaleDateString("en-US", {
-                      weekday: "long", month: "long", day: "numeric", year: "numeric"
-                    })}
+                    {featuredEvent.dateString 
+                      ? featuredEvent.dateString 
+                      : new Date(featuredEvent.date).toLocaleDateString("en-US", {
+                          weekday: "long", month: "long", day: "numeric", year: "numeric"
+                        })}
                   </div>
                   <h3 className="text-4xl md:text-7xl font-medium mb-10 font-serif italic leading-tight group-hover:tracking-tight transition-all duration-700">{featuredEvent.title}</h3>
                   <p className="text-primary-100/70 mb-12 leading-relaxed max-w-xl text-xl font-light">
@@ -115,8 +131,13 @@ export default function EventsPage() {
                     <span className="text-white/40 text-xs font-black uppercase tracking-[0.2em] bg-white/5 px-6 py-3 rounded-full border border-white/5 backdrop-blur-md">
                       Location: <span className="text-white">{featuredEvent.location}</span>
                     </span>
+                    {featuredEvent.price && (
+                      <span className="text-emerald-400/80 text-xs font-black uppercase tracking-[0.2em] bg-emerald-900/20 px-6 py-3 rounded-full border border-emerald-900/30 backdrop-blur-md">
+                        Price: <span className="text-emerald-300">{featuredEvent.price}</span>
+                      </span>
+                    )}
                     <Link 
-                      href="/contact"
+                      href={`/events/${featuredEvent.id}`}
                       className="px-12 py-5 rounded-full bg-white text-primary-900 font-black uppercase text-sm tracking-widest hover:bg-primary-100 transition-all shadow-2xl active:scale-95 inline-flex"
                     >
                       Register Now
@@ -125,9 +146,13 @@ export default function EventsPage() {
                 </div>
                 
                 <div className="lg:w-2/5 relative z-10 w-full">
-                  <div className="aspect-[4/3] bg-white/5 rounded-[2.5rem] border border-white/10 backdrop-blur-xl flex items-center justify-center shadow-premium relative group-hover:scale-105 transition-transform duration-700">
-                    <Calendar className="w-24 h-24 text-white/10" />
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary-400/10 to-transparent rounded-[2.5rem]" />
+                  <div className="aspect-[4/3] bg-white/5 rounded-[2.5rem] border border-white/10 backdrop-blur-xl flex items-center justify-center shadow-premium relative group-hover:scale-105 transition-transform duration-700 overflow-hidden">
+                    {featuredEvent.image ? (
+                      <img src={featuredEvent.image} alt={featuredEvent.title} className="w-full h-full object-cover" />
+                    ) : (
+                      <Calendar className="w-24 h-24 text-white/10" />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-400/10 to-transparent rounded-[2.5rem] pointer-events-none" />
                   </div>
                 </div>
               </div>

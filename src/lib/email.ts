@@ -49,3 +49,38 @@ export async function sendBookEmail(to: string, bookTitle: string, readUrl: stri
     return false;
   }
 }
+
+export async function sendEventRegistrationEmail(to: string, eventTitle: string, whatsappLink: string) {
+  if (!smtpEmail || !smtpPassword) {
+    console.error("SMTP_EMAIL or SMTP_PASSWORD environment variables are missing!");
+    return false;
+  }
+
+  const mailOptions = {
+    from: `"${fromName}" <${smtpEmail}>`,
+    to: to,
+    subject: `Registration Confirmed: ${eventTitle}`,
+    html: `
+      <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+        <h2 style="color: #051a14;">Congratulations!</h2>
+        <p>You have successfully registered for <strong>${eventTitle}</strong>.</p>
+        <p>We are excited to have you join us. Please click the button below to join our official WhatsApp group for all event updates, resources, and communication.</p>
+        <div style="margin: 30px 0; text-align: center;">
+          <a href="${whatsappLink}" style="background-color: #25D366; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; text-transform: uppercase; font-size: 14px;">Join WhatsApp Group</a>
+        </div>
+        <p style="color: #666; font-size: 14px;">If the button above doesn't work, you can copy and paste this link into your browser:</p>
+        <p style="color: #051a14; font-size: 12px; word-break: break-all;">${whatsappLink}</p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+        <p style="color: #999; font-size: 12px; text-align: center;">&copy; ${new Date().getFullYear()} NexLeadership Community. All rights reserved.</p>
+      </div>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return true;
+  } catch (error) {
+    console.error("Error sending event registration email:", error);
+    return false;
+  }
+}

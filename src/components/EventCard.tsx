@@ -1,12 +1,16 @@
 import Link from "next/link";
-import { Calendar, MapPin, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import { Calendar, MapPin, ArrowRight, Banknote } from "lucide-react";
 
 export interface EventData {
   id: string;
   title: string;
   description: string;
-  date: string; // ISO string or formatted date
+  date: any; // ISO string or formatted date
+  dateString?: string; // Custom string e.g. "July 20 - Sept 14"
   location: string;
+  price?: string;
+  image?: string;
 }
 
 interface EventCardProps {
@@ -15,19 +19,32 @@ interface EventCardProps {
 
 export default function EventCard({ event }: EventCardProps) {
   // Format the date assuming it's an ISO string or just display it if pre-formatted
-  const formattedDate = new Date(event.date).toLocaleDateString("en-US", {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    hour: "numeric",
-    minute: "2-digit",
-  });
+  const formattedDate = event.dateString 
+    ? event.dateString 
+    : new Date(event.date).toLocaleDateString("en-US", {
+        weekday: "short",
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+        hour: "numeric",
+        minute: "2-digit",
+      });
 
   return (
     <div className="group relative bg-white border border-gray-100 rounded-[2rem] overflow-hidden hover:shadow-premium transition-all duration-500 flex flex-col h-full hover:-translate-y-2">
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary-100/20 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primary-200/30 transition-colors" />
       
+      {event.image && (
+        <div className="w-full h-48 relative overflow-hidden">
+          <Image 
+            src={event.image} 
+            alt={event.title} 
+            fill 
+            className="object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+        </div>
+      )}
+
       <div className="p-8 md:p-10 flex-grow flex flex-col relative z-10">
         <div className="inline-flex items-center space-x-2 text-xs font-black uppercase tracking-[0.2em] text-primary-900 mb-6 bg-primary-50 px-4 py-2 rounded-full w-fit">
           <Calendar className="w-3 h-3" />
@@ -42,9 +59,17 @@ export default function EventCard({ event }: EventCardProps) {
           {event.description}
         </p>
         
-        <div className="flex items-center space-x-2 text-sm text-gray-400 mb-8 border-t border-gray-50 pt-6">
-          <MapPin className="w-4 h-4 shrink-0" />
-          <span className="truncate font-medium">{event.location}</span>
+        <div className="flex flex-col space-y-3 mb-8 border-t border-gray-50 pt-6">
+          <div className="flex items-center space-x-2 text-sm text-gray-400">
+            <MapPin className="w-4 h-4 shrink-0" />
+            <span className="truncate font-medium">{event.location}</span>
+          </div>
+          {event.price && (
+            <div className="flex items-center space-x-2 text-sm text-gray-400">
+              <Banknote className="w-4 h-4 shrink-0 text-emerald-500" />
+              <span className="truncate font-medium text-gray-700">{event.price}</span>
+            </div>
+          )}
         </div>
         
         <Link 
