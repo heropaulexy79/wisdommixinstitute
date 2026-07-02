@@ -71,7 +71,7 @@ export default function EventsPage() {
             Upcoming Calendar
           </span>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium text-white mb-10 tracking-tight max-w-5xl mx-auto font-serif italic leading-[1.1]">
-            Academy <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">Events</span>
+            Community <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-300 to-emerald-200 not-italic font-sans font-black uppercase tracking-tighter">Events</span>
           </h1>
           <p className="text-xl md:text-2xl text-primary-100/80 max-w-3xl mx-auto font-light leading-relaxed">
             Join our upcoming sessions, seminars, and training programs designed to stretch your capacity and renew your mind.
