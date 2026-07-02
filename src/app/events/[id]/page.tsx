@@ -156,8 +156,10 @@ export default function EventRegistrationPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
             {event.image && (
-              <div className="w-full h-80 md:h-[30rem] relative rounded-[2.5rem] overflow-hidden mb-10 shadow-premium border border-gray-100">
-                <Image src={event.image} alt={event.title} fill className="object-cover" />
+              <div className="w-full h-[28rem] md:h-[40rem] relative rounded-[2.5rem] overflow-hidden mb-10 shadow-premium border border-gray-100 bg-gray-50/50">
+                <div className="absolute inset-6 md:inset-10">
+                  <Image src={event.image} alt={event.title} fill className="object-contain" />
+                </div>
               </div>
             )}
             <h2 className="text-3xl font-serif italic text-gray-900 mb-6">About the Event</h2>

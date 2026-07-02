@@ -35,13 +35,15 @@ export default function EventCard({ event }: EventCardProps) {
       <div className="absolute top-0 right-0 w-32 h-32 bg-primary-100/20 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primary-200/30 transition-colors" />
       
       {event.image && (
-        <div className="w-full h-48 relative overflow-hidden">
-          <Image 
-            src={event.image} 
-            alt={event.title} 
-            fill 
-            className="object-cover group-hover:scale-105 transition-transform duration-700"
-          />
+        <div className="w-full h-64 md:h-72 relative overflow-hidden bg-gray-50/50 border-b border-gray-100">
+          <div className="absolute inset-4 md:inset-6">
+            <Image 
+              src={event.image} 
+              alt={event.title} 
+              fill 
+              className="object-contain group-hover:scale-105 transition-transform duration-700"
+            />
+          </div>
         </div>
       )}
 
