@@ -38,9 +38,7 @@ export async function POST(req: NextRequest) {
     const customerEmail = customer?.email;
     const eventId = metadata?.eventId || "masterclass-2026";
     const eventTitle = eventId === "masterclass-2026" ? "2-Month Transformational Masterclass" : "Academy Event";
-    
-    const whatsappLink = "https://chat.whatsapp.com/LMLesIYFnGoEhmDRl0yOFe";
-    
+    const whatsappLink = "https://chat.whatsapp.com/GitSsrGW8EPBaMOzEDeKNw?s=cl&p=a&ilr=1&amv=3";
     if (customerEmail) {
       await sendEventRegistrationEmail(customerEmail, eventTitle, whatsappLink);
     }

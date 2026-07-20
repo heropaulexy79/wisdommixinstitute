@@ -32,6 +32,7 @@ export default function EventRegistrationPage() {
   const [formData, setFormData] = useState({ name: "", email: "", phone: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
+  const [paymentMode, setPaymentMode] = useState<"full" | "part">("full");
 
   useEffect(() => {
     async function fetchEvent() {
@@ -77,7 +78,7 @@ export default function EventRegistrationPage() {
     // Parse amount from price string, defaulting to 0 if not parsable or not present
     let amount = 0;
     if (event.id === "masterclass-2026") {
-      amount = 70000;
+      amount = paymentMode === "part" ? 35000 : 70000;
     } else if (event.price) {
       const match = event.price.match(/\d+(?:,\d+)?/);
       if (match) amount = parseInt(match[0].replace(/,/g, ''), 10);
@@ -221,6 +222,22 @@ export default function EventRegistrationPage() {
                     <input required type="tel" placeholder="+234..." className="w-full pl-14 pr-6 py-4 rounded-2xl bg-gray-50 border border-gray-100 focus:bg-white focus:ring-4 focus:ring-primary-900/5 focus:border-primary-900 transition-all outline-none text-gray-900" value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })} />
                   </div>
                 </div>
+
+                {event.id === "masterclass-2026" && (
+                  <div className="space-y-2">
+                    <label className="text-[10px] font-black uppercase tracking-widest text-gray-400 ml-4">Payment Option</label>
+                    <div className="grid grid-cols-2 gap-4">
+                      <button type="button" onClick={() => setPaymentMode("full")} className={`p-4 rounded-2xl border transition-all text-left ${paymentMode === "full" ? "border-primary-900 bg-primary-50/50 ring-2 ring-primary-900/10" : "border-gray-100 bg-gray-50/50 hover:border-gray-200"}`}>
+                        <p className="font-bold text-gray-900 text-sm">Full Payment</p>
+                        <p className="text-xs text-gray-500">₦70,000</p>
+                      </button>
+                      <button type="button" onClick={() => setPaymentMode("part")} className={`p-4 rounded-2xl border transition-all text-left ${paymentMode === "part" ? "border-primary-900 bg-primary-50/50 ring-2 ring-primary-900/10" : "border-gray-100 bg-gray-50/50 hover:border-gray-200"}`}>
+                        <p className="font-bold text-gray-900 text-sm">Part Payment</p>
+                        <p className="text-xs text-gray-500">₦35,000</p>
+                      </button>
+                    </div>
+                  </div>
+                )}
 
                 {errorMsg && <p className="text-red-500 text-sm px-4">{errorMsg}</p>}
 
