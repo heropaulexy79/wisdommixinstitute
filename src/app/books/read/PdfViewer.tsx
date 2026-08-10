@@ -7,8 +7,8 @@ import "react-pdf/dist/Page/AnnotationLayer.css";
 import "react-pdf/dist/Page/TextLayer.css";
 import { ChevronLeft, ChevronRight, ZoomIn, ZoomOut, AlertCircle, Loader2 } from "lucide-react";
 
-// Set up the PDF.js worker
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+// Set up local same-origin PDF.js worker to bypass cross-origin browser security restrictions
+pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.mjs";
 
 export default function PdfViewer() {
   const searchParams = useSearchParams();
@@ -70,6 +70,35 @@ export default function PdfViewer() {
     verifyAccess();
   }, [bookId, reference]);
 
+  const handleResetDevice = async () => {
+    if (!bookId || !reference) return;
+    setAccessStatus("loading");
+    try {
+      const tokenKey = `device_token_${bookId}_${reference}`;
+      const token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      localStorage.setItem(tokenKey, token);
+      setDeviceToken(token);
+
+      const res = await fetch("/api/books/verify-access", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: bookId, ref: reference, deviceToken: token, resetDevice: true }),
+      });
+
+      if (res.ok) {
+        setAccessStatus("success");
+      } else {
+        const data = await res.json();
+        setAccessStatus("denied");
+        setErrorMessage(data.error || "Access denied.");
+      }
+    } catch (err) {
+      console.error("Error resetting device:", err);
+      setAccessStatus("error");
+      setErrorMessage("Failed to reset device access.");
+    }
+  };
+
   // Document callbacks
   function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     setNumPages(numPages);
@@ -106,10 +135,18 @@ export default function PdfViewer() {
           <AlertCircle className="w-12 h-12 text-red-500 mx-auto mb-4" />
           <h2 className="text-2xl font-serif text-gray-900 mb-2">Access Denied</h2>
           <p className="text-gray-600 mb-6">{errorMessage}</p>
-          {accessStatus === "denied" && errorMessage.includes("registered") && (
-            <p className="text-sm text-gray-500 bg-gray-50 p-4 rounded-lg">
-              This book has been registered to another device or browser. To protect copyright, purchases are restricted to a single device.
-            </p>
+          {accessStatus === "denied" && (
+            <div className="space-y-4">
+              <p className="text-xs text-gray-500 bg-gray-50 p-4 rounded-xl border border-gray-100 leading-relaxed">
+                This book was registered to a different device or browser window.
+              </p>
+              <button
+                onClick={handleResetDevice}
+                className="w-full py-3.5 px-6 rounded-xl bg-primary-900 text-white font-bold text-xs uppercase tracking-wider hover:bg-black transition-all shadow-md"
+              >
+                Register & Bind to Current Device
+              </button>
+            </div>
           )}
         </div>
       </div>

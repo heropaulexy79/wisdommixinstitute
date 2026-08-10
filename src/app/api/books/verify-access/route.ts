@@ -5,7 +5,7 @@ import { db } from "@/lib/firebase";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { id: bookId, ref: reference, deviceToken } = body;
+    const { id: bookId, ref: reference, deviceToken, resetDevice } = body;
 
     if (!bookId || !reference || !deviceToken) {
       return NextResponse.json({ error: "Missing required parameters" }, { status: 400 });
@@ -21,8 +21,8 @@ export async function POST(req: NextRequest) {
     const purchaseData = docSnapshot.data();
 
     // Device lock logic
-    if (!purchaseData.deviceToken) {
-      // First time access: register this device
+    if (!purchaseData.deviceToken || resetDevice) {
+      // First time access or reset requested: register this device
       await updateDoc(docSnapshot.ref, {
         deviceToken: deviceToken,
         lastAccessed: new Date(),

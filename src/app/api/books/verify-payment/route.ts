@@ -76,9 +76,10 @@ export async function POST(req: NextRequest) {
     }
 
     const results = [];
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || req.nextUrl.origin;
     for (const item of cartItems) {
       const { id: bookId, title: bookTitle } = item;
-      const readUrl = `${req.nextUrl.origin}/books/read?id=${bookId}&ref=${reference}`;
+      const readUrl = `${baseUrl}/books/read?id=${bookId}&ref=${reference}`;
 
       // 1. Send Email
       const emailSent = await sendBookEmail(customerEmail, bookTitle, readUrl);
