@@ -11,6 +11,8 @@ interface BookCardProps {
   title: string;
   author: string;
   price: number;
+  priceDigital?: number;
+  pricePhysical?: number;
   image: string; // Keep for backward compatibility or first image
   images?: string[]; // Optional array of images
   description: string;
@@ -19,10 +21,15 @@ interface BookCardProps {
 }
 
 export default function BookCard({ 
-  id, title, author, price, image, images = [], description, previewText, onPreview 
+  id, title, author, price, priceDigital, pricePhysical, image, images = [], description, previewText, onPreview 
 }: BookCardProps) {
+  const [selectedFormat, setSelectedFormat] = useState<'digital' | 'physical'>('digital');
+  const digitalPrice = priceDigital || price;
+  const physicalPrice = pricePhysical || price + 5000;
+  const activePrice = selectedFormat === 'physical' ? physicalPrice : digitalPrice;
+
   const { addToCart, removeFromCart, isInCart } = useCart();
-  const inCart = isInCart(id);
+  const inCart = isInCart(id, selectedFormat);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [direction, setDirection] = useState(0);
 
@@ -31,9 +38,18 @@ export default function BookCard({
   const handleToggleCart = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (inCart) {
-      removeFromCart(id);
+      removeFromCart(`${id}-${selectedFormat}`);
     } else {
-      addToCart({ id, title, author, price, image: allImages[0], description });
+      addToCart({
+        id: `${id}-${selectedFormat}`,
+        bookId: id,
+        title: `${title} (${selectedFormat === 'physical' ? 'Physical Preorder' : 'Digital E-Book'})`,
+        author,
+        price: activePrice,
+        image: allImages[0],
+        description,
+        format: selectedFormat,
+      });
     }
   };
 
@@ -146,8 +162,11 @@ export default function BookCard({
         )}
 
         <div className="absolute top-6 right-6 z-20">
-          <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-white/20">
-            <span className="text-primary-900 font-bold text-lg">₦{price.toLocaleString()}</span>
+          <div className="bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg border border-white/20 flex flex-col items-end">
+            <span className="text-primary-900 font-bold text-lg">₦{activePrice.toLocaleString()}</span>
+            <span className="text-[9px] font-bold text-gray-500 uppercase tracking-wider">
+              {selectedFormat === 'physical' ? 'Preorder' : 'Digital'}
+            </span>
           </div>
         </div>
 
@@ -155,14 +174,14 @@ export default function BookCard({
           <div className="absolute top-6 left-6 z-20">
             <div className="bg-primary-900 text-white px-3 py-1.5 rounded-full shadow-lg text-[10px] font-black uppercase tracking-widest flex items-center gap-1.5">
               <Check className="w-3 h-3" />
-              In Cart
+              In Cart ({selectedFormat === 'physical' ? 'Physical' : 'Digital'})
             </div>
           </div>
         )}
       </button>
 
       <div className="p-8 flex flex-col flex-grow">
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2 mb-3">
           <BookOpen className="w-4 h-4 text-accent-500" />
           <span className="text-xs font-bold uppercase tracking-widest text-primary-900/60">{author}</span>
         </div>
@@ -172,6 +191,41 @@ export default function BookCard({
         >
           {title}
         </button>
+
+        {/* Format Switcher */}
+        <div className="mb-6 p-1 bg-gray-100 rounded-2xl flex gap-1 text-xs">
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedFormat('digital');
+            }}
+            className={`flex-1 py-2 px-3 rounded-xl font-bold transition-all text-center ${
+              selectedFormat === 'digital'
+                ? "bg-white text-primary-900 shadow-sm"
+                : "text-gray-500 hover:text-gray-800"
+            }`}
+          >
+            Digital E-Book
+            <span className="block text-[10px] font-normal text-gray-400">₦{digitalPrice.toLocaleString()}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedFormat('physical');
+            }}
+            className={`flex-1 py-2 px-3 rounded-xl font-bold transition-all text-center ${
+              selectedFormat === 'physical'
+                ? "bg-primary-900 text-white shadow-sm"
+                : "text-gray-500 hover:text-gray-800"
+            }`}
+          >
+            Physical Preorder
+            <span className="block text-[10px] font-normal opacity-80">₦{physicalPrice.toLocaleString()}</span>
+          </button>
+        </div>
         
         <div className="mt-auto">
           <button
@@ -185,12 +239,12 @@ export default function BookCard({
             {inCart ? (
               <>
                 <Check className="w-4 h-4" />
-                Added — Remove
+                Remove {selectedFormat === 'physical' ? 'Preorder' : 'Digital'}
               </>
             ) : (
               <>
                 <ShoppingCart className="w-4 h-4" />
-                Add to Cart
+                {selectedFormat === 'physical' ? 'Preorder Physical Copy' : 'Add Digital Copy'}
               </>
             )}
           </button>

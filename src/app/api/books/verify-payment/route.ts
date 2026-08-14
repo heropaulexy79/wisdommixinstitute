@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { sendBookEmail } from "@/lib/email";
+import { sendBookEmail, sendBookPreorderEmail } from "@/lib/email";
 import { collection, setDoc, doc, serverTimestamp } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { BOOKS } from "@/lib/products";
@@ -41,6 +41,7 @@ export async function POST(req: NextRequest) {
     const customerEmail = customer.email;
     const customerName = metadata?.custom_fields?.find((f: any) => f.variable_name === "name")?.value || customer?.first_name || "Valued Customer";
     const customerPhone = metadata?.custom_fields?.find((f: any) => f.variable_name === "phone")?.value || "";
+    const customerAddress = metadata?.custom_fields?.find((f: any) => f.variable_name === "address")?.value || "";
 
     // Extract cart items
     const cartItemsRaw = metadata?.custom_fields?.find((f: any) => f.variable_name === "cart_items")?.value;
@@ -55,17 +56,19 @@ export async function POST(req: NextRequest) {
     if (cartItems.length === 0) {
       const bookId = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_id")?.value;
       const bookTitle = metadata?.custom_fields?.find((f: any) => f.variable_name === "book_title")?.value || "Your Book";
-      if (bookId) cartItems.push({ id: bookId, title: bookTitle });
+      if (bookId) cartItems.push({ id: bookId, bookId, title: bookTitle, format: "digital" });
     }
 
-    // VALIDATION: Calculate expected total price
+    // VALIDATION: Calculate expected total price based on format
     let expectedTotal = 0;
     for (const item of cartItems) {
-      const book = BOOKS.find(b => b.id === item.id);
+      const rawBookId = item.bookId || item.id.replace(/-(digital|physical)$/, "");
+      const format = item.format || "digital";
+      const book = BOOKS.find(b => b.id === rawBookId);
       if (book) {
-        expectedTotal += book.price;
+        expectedTotal += format === "physical" ? book.pricePhysical : book.priceDigital;
       } else {
-        console.warn(`Unknown book ID in cart: ${item.id} for ref: ${reference}`);
+        console.warn(`Unknown book ID in cart: ${rawBookId} for ref: ${reference}`);
         return NextResponse.json({ error: "Invalid item in cart" }, { status: 400 });
       }
     }
@@ -78,23 +81,33 @@ export async function POST(req: NextRequest) {
     const results = [];
     const baseUrl = process.env.NEXT_PUBLIC_APP_URL || req.nextUrl.origin;
     for (const item of cartItems) {
-      const { id: bookId, title: bookTitle } = item;
-      const readUrl = `${baseUrl}/books/read?id=${bookId}&ref=${reference}`;
+      const rawBookId = item.bookId || item.id.replace(/-(digital|physical)$/, "");
+      const format = item.format || "digital";
+      const { title: bookTitle } = item;
+      const readUrl = format === "digital" ? `${baseUrl}/books/read?id=${rawBookId}&ref=${reference}` : "";
 
-      // 1. Send Email
-      const emailSent = await sendBookEmail(customerEmail, bookTitle, readUrl);
+      // 1. Send Email according to format
+      let emailSent = false;
+      if (format === "physical") {
+        emailSent = await sendBookPreorderEmail(customerEmail, bookTitle, customerAddress);
+      } else {
+        emailSent = await sendBookEmail(customerEmail, bookTitle, readUrl);
+      }
 
       // 2. Log purchase to Firestore
       try {
-        await setDoc(doc(db, "book_purchases", `${reference}_${bookId}`), {
+        await setDoc(doc(db, "book_purchases", `${reference}_${item.id}`), {
           email: customerEmail,
           name: customerName,
           phone: customerPhone,
-          bookId,
+          address: customerAddress,
+          bookId: rawBookId,
           bookTitle,
+          format,
           reference,
-          amount: paidAmount / 100 / cartItems.length,
+          amount: item.price || (paidAmount / 100 / cartItems.length),
           status: "success",
+          preorderStatus: format === "physical" ? "pending_dispatch" : "fulfilled",
           emailSent,
           createdAt: serverTimestamp(),
         });
@@ -102,7 +115,7 @@ export async function POST(req: NextRequest) {
         console.error("Firestore logging error:", e);
       }
 
-      results.push({ bookTitle, readUrl, emailSent });
+      results.push({ bookTitle, readUrl, format, emailSent });
     }
 
     console.log(`Successfully processed purchase for ref: ${reference}`);

@@ -20,7 +20,6 @@ export async function sendBookEmail(to: string, bookTitle: string, readUrl: stri
     return false;
   }
 
-
   const mailOptions = {
     from: `"${fromName}" <${smtpEmail}>`,
     to: to,
@@ -28,7 +27,7 @@ export async function sendBookEmail(to: string, bookTitle: string, readUrl: stri
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
         <h2 style="color: #051a14;">Thank you for your purchase!</h2>
-        <p>You have successfully purchased <strong>${bookTitle}</strong>.</p>
+        <p>You have successfully purchased the digital e-book: <strong>${bookTitle}</strong>.</p>
         <p>You can read your book using the link below. Note: Access is limited to a single device.</p>
         <div style="margin: 30px 0; text-align: center;">
           <a href="${readUrl}" style="background-color: #051a14; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; text-transform: uppercase; font-size: 14px;">Read Now</a>
@@ -46,6 +45,48 @@ export async function sendBookEmail(to: string, bookTitle: string, readUrl: stri
     return true;
   } catch (error) {
     console.error("Error sending email:", error);
+    return false;
+  }
+}
+
+export async function sendBookPreorderEmail(to: string, bookTitle: string, deliveryAddress: string) {
+  if (!smtpEmail || !smtpPassword) {
+    console.error("SMTP_EMAIL or SMTP_PASSWORD environment variables are missing!");
+    return false;
+  }
+
+  const mailOptions = {
+    from: `"${fromName}" <${smtpEmail}>`,
+    to: to,
+    subject: `Preorder Confirmed: ${bookTitle} (Physical Copy)`,
+    html: `
+      <div style="font-family: sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #eee; border-radius: 10px;">
+        <h2 style="color: #051a14;">Physical Hardcopy Preorder Confirmed!</h2>
+        <p>Thank you for preordering the physical copy of <strong>${bookTitle}</strong>.</p>
+        <p>Your order has been recorded and is currently being processed for the address provided below:</p>
+        <div style="margin: 20px 0; padding: 15px; background-color: #f9f9f9; border-left: 4px solid #051a14; border-radius: 4px;">
+          <h4 style="margin: 0 0 5px 0; color: #051a14;">Delivery Address:</h4>
+          <p style="margin: 0; color: #555;">${deliveryAddress || "Address on file"}</p>
+        </div>
+        <div style="margin: 20px 0; padding: 15px; background-color: #fff8e1; border: 1px solid #ffe082; border-radius: 6px; color: #5d4037;">
+          <h4 style="margin: 0 0 5px 0; color: #e65100;">Important Notice Regarding Delivery:</h4>
+          <p style="margin: 0; font-size: 14px; leading-height: 1.5;">
+            Our representative will call you shortly to confirm how you will receive your physical copy. 
+            <strong>Please note:</strong> Delivery charges are not included in the book purchase price; delivery costs will be paid by the recipient upon dispatch/arrival.
+          </p>
+        </div>
+        <p style="color: #666; font-size: 14px;">If you have any questions, feel free to reply directly to this email.</p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+        <p style="color: #999; font-size: 12px; text-align: center;">&copy; ${new Date().getFullYear()} NexLeadership Community. All rights reserved.</p>
+      </div>
+    `,
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    return true;
+  } catch (error) {
+    console.error("Error sending preorder email:", error);
     return false;
   }
 }

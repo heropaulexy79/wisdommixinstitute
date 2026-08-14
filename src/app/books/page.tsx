@@ -34,7 +34,7 @@ export default function BooksPage() {
     setIsModalOpen(true);
   };
 
-  const handlePurchaseSubmit = async (userData: { name: string; email: string; phone: string }) => {
+  const handlePurchaseSubmit = async (userData: { name: string; email: string; phone: string; address?: string }) => {
     if (items.length === 0) return;
 
     setIsSubmitting(true);
@@ -46,7 +46,8 @@ export default function BooksPage() {
           email: userData.email,
           name: userData.name,
           phone: userData.phone,
-          cartItems: items.map((b) => ({ id: b.id, title: b.title, price: b.price })),
+          address: userData.address || "",
+          cartItems: items.map((b) => ({ id: b.id, bookId: b.bookId, title: b.title, price: b.price, format: b.format })),
           amount: totalPrice,
         }),
       });
@@ -58,7 +59,9 @@ export default function BooksPage() {
           JSON.stringify({
             email: userData.email,
             name: userData.name,
-            cartItems: items.map((b) => ({ id: b.id, title: b.title })),
+            phone: userData.phone,
+            address: userData.address || "",
+            cartItems: items.map((b) => ({ id: b.id, bookId: b.bookId, title: b.title, price: b.price, format: b.format })),
           })
         );
         window.location.href = data.authorization_url;
@@ -216,7 +219,16 @@ export default function BooksPage() {
                     {items.map((item) => (
                       <div key={item.id} className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
                         <div>
-                          <p className="font-medium text-gray-900">{item.title}</p>
+                          <div className="flex items-center gap-2">
+                            <p className="font-medium text-gray-900">{item.title}</p>
+                            <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${
+                              item.format === 'physical' 
+                                ? 'bg-amber-100 text-amber-800' 
+                                : 'bg-emerald-100 text-emerald-800'
+                            }`}>
+                              {item.format === 'physical' ? 'Physical Preorder' : 'Digital'}
+                            </span>
+                          </div>
                           <p className="text-sm text-gray-400">{item.author}</p>
                         </div>
                         <div className="flex items-center gap-4">

@@ -1,9 +1,24 @@
-export const BOOKS = [
+export interface Book {
+  id: string;
+  title: string;
+  author: string;
+  price: number; // default digital price
+  priceDigital: number;
+  pricePhysical: number;
+  image: string;
+  images: string[];
+  description: string;
+  previewText?: string[];
+}
+
+export const BOOKS: Book[] = [
   {
     id: "kingdom-power-and-blessing",
     title: "Kingdom Power and Blessing",
     author: "Joseph Adeniran",
     price: 15000,
+    priceDigital: 15000,
+    pricePhysical: 20000,
     image: "/KINGDOM, POWER AND BLESSING.jpeg",
     images: [
       "/KINGDOM, POWER AND BLESSING.jpeg",
@@ -22,6 +37,8 @@ export const BOOKS = [
     title: "The Leading Mind",
     author: "Joseph Adeniran",
     price: 15000,
+    priceDigital: 15000,
+    pricePhysical: 20000,
     image: "/THE LEADING MIND.jpeg",
     images: [
       "/THE LEADING MIND.jpeg",
@@ -39,6 +56,8 @@ export const BOOKS = [
     title: "One of a Kind",
     author: "Joseph Adeniran",
     price: 10000,
+    priceDigital: 10000,
+    pricePhysical: 15000,
     image: "/ONE OF A KIND2.jpeg",
     images: [
       "/ONE OF A KIND2.jpeg",
@@ -56,6 +75,8 @@ export const BOOKS = [
     title: "The Rod of Strength",
     author: "Joseph Adeniran",
     price: 10000,
+    priceDigital: 10000,
+    pricePhysical: 15000,
     image: "/THE ROD OF STRENGTH.jpeg",
     images: [
       "/THE ROD OF STRENGTH.jpeg",
@@ -74,3 +95,4 @@ export const MENTORSHIP_PRICES = {
   SINGLE_SESSION: 30000,
   DOUBLE_SESSION: 50000,
 };
+
